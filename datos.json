@@ -6,17 +6,19 @@
     "tamano": "145 MB",
     "androidMinimo": "Android 8.0+",
     "apkUrl": "https://github.com",
-    "youtubeUrl": "https://youtube.com"
+    "youtubeUrl": "https://youtube.com",
+    "trailerUrl": "https://youtube.com",
+    "estadioBg": "estadio-bg.jpg"
   },
   "destacados": [
     {
       "posicion": "Izquierda",
-      "imagen": "destacados/jugador_1.jpg",
+      "imagen": "jugador1.png",
       "club": "Uniforme Genérico"
     },
     {
       "posicion": "Centro",
-      "imagen": "destacados/jugador_2.jpg",
+      "imagen": "jugador2.png",
       "club": "Uniforme Genérico"
     },
     {
