@@ -3,45 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Privado v3 | MthiGamesCR</title>
+  <title>Panel Privado v4.0 | MthiGamesCR</title>
   <style>
     :root {
-      --bg: #060913; --card: #0f1626; --border: #1e293b;
-      --accent: #10b981; --danger: #ef4444; --text: #f8fafc; --muted: #94a3b8;
+      --bg: #060913; --card: #0f1626; --card-alt: #131c31; --border: #1e293b;
+      --accent: #10b981; --accent-hover: #059669; --danger: #ef4444;
+      --text: #f8fafc; --muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding: 2rem 5%; max-width: 1100px; margin: 0 auto; }
-    h1 { font-size: 1.8rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 10px; }
+    body { background: var(--bg); color: var(--text); padding: 2rem 5%; max-width: 1120px; margin: 0 auto; }
+    header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    h1 { font-size: 1.8rem; display: flex; align-items: center; gap: 10px; }
     .sub { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
     .panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
-    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
-    .panel h2 { font-size: 1.15rem; color: var(--accent); }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem; }
+    .panel h2 { font-size: 1.15rem; color: var(--accent); display: flex; align-items: center; gap: 8px; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
     label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
     input[type="text"], input[type="password"], textarea, select {
       width: 100%; background: #060913; border: 1px solid var(--border); color: var(--text);
-      padding: 9px 12px; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.6rem;
+      padding: 9px 12px; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.7rem;
     }
     input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
-    .item-box { background: #090e1a; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
-    .item-box img { width: 70px; height: 85px; object-fit: cover; border-radius: 8px; margin-bottom: 0.6rem; border: 1px solid var(--border); }
-    .club-row {
-      display: grid; grid-template-columns: 56px 1.2fr 0.9fr 1fr 1.1fr auto; gap: 0.8rem; align-items: center;
-      padding: 0.9rem 0; border-bottom: 1px solid var(--border);
+    .sub-box { background: var(--card-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .preview-img {
+      width: 100%; height: 140px; object-fit: contain; border-radius: 8px; margin-bottom: 0.8rem;
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+      background-color: #090d16; border: 1px solid var(--border);
     }
-    .club-row:last-child { border-bottom: none; }
-    .club-row img { width: 48px; height: 48px; object-fit: contain; background: #060913; border-radius: 8px; padding: 4px; border: 1px solid var(--border); }
+    .chk-row { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #e2e8f0; margin: 6px 0 10px; cursor: pointer; }
+    .chk-row input { width: auto; margin: 0; accent-color: var(--accent); }
+    .club-row {
+      display: grid; grid-template-columns: 64px 1.2fr 0.9fr 1fr 1.2fr 42px; gap: 0.8rem; align-items: center;
+      padding: 0.9rem; background: var(--card-alt); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.8rem;
+    }
+    .club-row img {
+      width: 56px; height: 56px; object-fit: contain; border-radius: 8px; padding: 4px;
+      background-color: #060913; border: 1px solid var(--border);
+    }
+    .club-row input, .club-row select { margin-bottom: 0; }
     .btn {
       background: var(--accent); color: #022c22; font-weight: 800; border: none;
       padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 1rem;
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
     }
-    .btn-sm { padding: 8px 14px; font-size: 0.85rem; border-radius: 6px; }
-    .btn-danger { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.4); }
-    .btn:hover { opacity: 0.9; }
+    .btn:hover { background: var(--accent-hover); }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .status-msg { margin-top: 1rem; padding: 12px; border-radius: 8px; font-weight: 600; display: none; }
+    .btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+    .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .btn-outline:hover { background: rgba(16,185,129,0.12); }
+    .btn-del {
+      background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.3);
+      width: 38px; height: 38px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .btn-del:hover { background: var(--danger); color: #fff; }
+    .status-msg { margin-top: 1rem; padding: 14px; border-radius: 8px; font-weight: 600; display: none; }
     .status-ok { background: rgba(16,185,129,0.15); color: var(--accent); border: 1px solid var(--accent); display: block; }
     .status-err { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid #f87171; display: block; }
     @media (max-width: 850px) { .club-row { grid-template-columns: 1fr; } }
@@ -49,62 +67,111 @@
 </head>
 <body>
 
-  <h1>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-    Panel de Control Privado (MthiGamesCR)
-  </h1>
-  <p class="sub">Administra jugadores de portada, galería de capturas, changelog y clubes licenciados.</p>
+  <header-top>
+    <div>
+      <h1>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Panel de Control v4.0
+      </h1>
+      <p class="sub">Gestiona portada transparente, estadio, tráiler, capturas, changelog y licencias ilimitadas.</p>
+    </div>
+    <a href="index.html" target="_blank" class="btn btn-sm btn-outline">Ver Web Pública</a>
+  </header-top>
 
+  <!-- 1. Seguridad -->
   <div class="panel">
-    <h2>1. Autenticación de Seguridad</h2>
-    <label>GitHub Personal Access Token (ghp_...)</label>
-    <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <h2>1. Autenticación GitHub</h2>
+    <div class="grid-2">
+      <div>
+        <label>Personal Access Token (permiso: repo)</label>
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      </div>
+      <div style="display:flex; align-items:center;">
+        <small style="color: var(--muted);">El token se guarda solo en este navegador. Al activar <strong>Quitar fondo automático</strong> en cualquier imagen, tu navegador la convierte a PNG transparente antes de subirla.</small>
+      </div>
+    </div>
   </div>
 
+  <!-- 2. Datos Generales y Video -->
   <div class="panel">
-    <h2>2. Datos Principales del Juego</h2>
+    <h2>2. Configuración del Juego y Tráiler</h2>
     <div class="grid-2">
-      <div><label>Título del Juego</label><input type="text" id="edit-titulo"></div>
-      <div><label>Versión Actual</label><input type="text" id="edit-version"></div>
-      <div><label>Peso del APK</label><input type="text" id="edit-tamano"></div>
-      <div><label>Enlace Directo al APK (Releases)</label><input type="text" id="edit-apk"></div>
+      <div>
+        <label>Título del Juego</label>
+        <input type="text" id="edit-titulo">
+      </div>
+      <div>
+        <label>Versión Actual</label>
+        <input type="text" id="edit-version">
+      </div>
+      <div>
+        <label>Peso del APK</label>
+        <input type="text" id="edit-tamano">
+      </div>
+      <div>
+        <label>Sistema Mínimo</label>
+        <input type="text" id="edit-android">
+      </div>
+      <div>
+        <label>Enlace Directo al APK (GitHub Releases)</label>
+        <input type="text" id="edit-apk">
+      </div>
+      <div>
+        <label>Enlace del Video Destacado (YouTube)</label>
+        <input type="text" id="edit-trailer" placeholder="https://www.youtube.com/watch?v=...">
+      </div>
     </div>
     <label>Descripción Principal</label>
     <textarea id="edit-subtitulo" rows="2"></textarea>
   </div>
 
+  <!-- 3. Escenario de Portada (Estadio + Top 3 Jugadores) -->
   <div class="panel">
-    <h2>3. Top 3 Jugadores de Portada (Uniformes Destacados)</h2>
-    <div id="destacados-editor" class="grid-3"></div>
+    <h2>3. Escenario de Portada (Estadio + Top 3 Jugadores)</h2>
+    <div class="sub-box" style="margin-bottom: 1rem;">
+      <label>Fondo del Estadio de Portada (Opcional - JPG/PNG)</label>
+      <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+        <img id="prev-estadio" src="estadio-bg.png" class="preview-img" style="width:180px; height:90px; margin:0;" onerror="this.style.opacity='0.3'">
+        <div>
+          <input type="file" id="file-estadio" accept="image/*" style="font-size:0.85rem; color:var(--muted);">
+          <small style="display:block; color:var(--muted); margin-top:4px;">Se muestra detrás de los 3 jugadores transparentes en la portada.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3" id="destacados-editor"></div>
   </div>
 
+  <!-- 4. Galería de Capturas -->
   <div class="panel">
     <div class="panel-header">
       <h2>4. Galería de Capturas In-Game</h2>
-      <button type="button" class="btn btn-sm" onclick="agregarCaptura()">+ Agregar Captura</button>
+      <button type="button" class="btn btn-sm btn-outline" onclick="agregarCaptura()">+ Agregar Captura</button>
     </div>
-    <div id="capturas-editor" class="grid-2"></div>
+    <div class="grid-2" id="capturas-editor"></div>
   </div>
 
+  <!-- 5. Gestor Ilimitado de Clubes -->
   <div class="panel">
     <div class="panel-header">
-      <h2>5. Historial de Actualizaciones (Changelog)</h2>
-      <button type="button" class="btn btn-sm" onclick="agregarChangelog()">+ Nueva Versión</button>
-    </div>
-    <div id="changelog-editor" class="grid-2"></div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-header">
-      <h2>6. Gestión Ilimitada de Clubes</h2>
-      <button type="button" class="btn btn-sm" onclick="agregarClub()">+ Agregar Nuevo Club</button>
+      <h2>5. Gestor de Clubes y Licencias (<span id="club-count">0</span>)</h2>
+      <button type="button" class="btn btn-sm btn-outline" onclick="agregarClub()">+ Agregar Nuevo Club</button>
     </div>
     <div id="clubs-editor">Cargando clubes...</div>
   </div>
 
+  <!-- 6. Historial de Actualizaciones (Changelog) -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>6. Registro de Actualizaciones (Changelog)</h2>
+      <button type="button" class="btn btn-sm btn-outline" onclick="agregarChangelog()">+ Nueva Versión</button>
+    </div>
+    <div id="changelog-editor"></div>
+  </div>
+
   <button id="btn-save" class="btn" onclick="guardarCambios()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-    Publicar Todos los Cambios
+    Publicar Cambios en la Web Oficial
   </button>
 
   <div id="feedback" class="status-msg"></div>
@@ -126,110 +193,94 @@
 
         if (!appData.destacados) {
           appData.destacados = [
-            { posicion: "Izquierda", imagen: "jugador1.png", club: "Uniforme Genérico" },
-            { posicion: "Centro", imagen: "jugador2.png", club: "Uniforme Genérico" },
-            { posicion: "Derecha", imagen: "jugador3.png", club: "Uniforme Genérico" }
+            { posicion: 'Izquierda', imagen: 'jugador1.png', club: 'Uniforme Genérico' },
+            { posicion: 'Centro', imagen: 'jugador2.png', club: 'Uniforme Genérico' },
+            { posicion: 'Derecha', imagen: 'jugador3.png', club: 'Uniforme Genérico' }
           ];
         }
         if (!appData.capturas) appData.capturas = [];
         if (!appData.changelog) appData.changelog = [];
 
-        document.getElementById('edit-titulo').value = appData.juego.titulo;
-        document.getElementById('edit-version').value = appData.juego.version;
-        document.getElementById('edit-tamano').value = appData.juego.tamano;
-        document.getElementById('edit-apk').value = appData.juego.apkUrl;
-        document.getElementById('edit-subtitulo').value = appData.juego.subtitulo;
+        document.getElementById('edit-titulo').value = appData.juego.titulo || '';
+        document.getElementById('edit-version').value = appData.juego.version || '';
+        document.getElementById('edit-tamano').value = appData.juego.tamano || '';
+        document.getElementById('edit-android').value = appData.juego.androidMinimo || 'Android 8.0+';
+        document.getElementById('edit-apk').value = appData.juego.apkUrl || '';
+        document.getElementById('edit-trailer').value = appData.juego.trailerUrl || appData.juego.youtubeUrl || '';
+        document.getElementById('edit-subtitulo').value = appData.juego.subtitulo || '';
+        if (appData.juego.estadioBg) {
+          document.getElementById('prev-estadio').src = appData.juego.estadioBg + '?t=' + Date.now();
+        }
 
         renderDestacados();
         renderCapturas();
-        renderChangelog();
         renderClubes();
+        renderChangelog();
       } catch (e) {
-        document.getElementById('clubs-editor').textContent = 'Error cargando datos.json.';
+        document.getElementById('clubs-editor').textContent = 'Error cargando datos.json desde GitHub.';
       }
     }
 
     function renderDestacados() {
       const cont = document.getElementById('destacados-editor');
       cont.innerHTML = '';
-      appData.destacados.forEach((d, i) => {
-        cont.innerHTML += `
-          <div class="item-box">
-            <strong>Posición: ${d.posicion}</strong><br><br>
-            <img src="${d.imagen}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
-            <label>Nombre del Club / Uniforme</label>
-            <input type="text" id="dest-club-${i}" value="${d.club}">
-            <label>Subir Imagen Jugador (PNG/JPG)</label>
-            <input type="file" id="dest-file-${i}" accept="image/*" style="font-size:0.8rem;">
-          </div>
+      const labels = ['Jugador 1 (Izquierda)', 'Jugador 2 (Centro Protagonista)', 'Jugador 3 (Derecha)'];
+      appData.destacados.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sub-box';
+        div.innerHTML = `
+          <label>${labels[idx] || 'Jugador ' + (idx+1)}</label>
+          <img src="${item.imagen}?t=${Date.now()}" class="preview-img" onerror="this.src='escudo-generico.svg'">
+          <label>Etiqueta del Uniforme / Club</label>
+          <input type="text" id="dest-club-${idx}" value="${item.club}">
+          <label>Subir Nueva Imagen</label>
+          <input type="file" id="dest-file-${idx}" accept="image/*" style="font-size:0.8rem; color:var(--muted);">
+          <label class="chk-row">
+            <input type="checkbox" id="dest-rmbg-${idx}" checked>
+            Quitar fondo automáticamente (PNG transparente)
+          </label>
+          <label style="font-size:0.75rem;">Tolerancia de borrado (15 - 60): <span id="tol-val-${idx}">32</span></label>
+          <input type="range" id="dest-tol-${idx}" min="10" max="75" value="32" oninput="document.getElementById('tol-val-${idx}').textContent=this.value" style="width:100%;">
         `;
+        cont.appendChild(div);
       });
     }
 
     function renderCapturas() {
       const cont = document.getElementById('capturas-editor');
       cont.innerHTML = '';
-      appData.capturas.forEach((cap, i) => {
-        cont.innerHTML += `
-          <div class="item-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <strong>Captura #${i + 1}</strong>
-              <button type="button" class="btn btn-sm btn-danger" onclick="eliminarCaptura(${i})">Eliminar</button>
-            </div>
-            <img src="${cap.imagen}?t=${Date.now()}" style="width:100%; height:110px; object-fit:cover;" onerror="this.src='escudo-generico.svg'">
-            <label>Título de la captura</label>
-            <input type="text" id="cap-title-${i}" value="${cap.titulo}">
-            <label>Subir imagen</label>
-            <input type="file" id="cap-file-${i}" accept="image/*" style="font-size:0.8rem;">
+      appData.capturas.forEach((cap, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sub-box';
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <label style="margin:0;">Captura #${idx + 1}</label>
+            <button type="button" class="btn-del" style="width:28px; height:28px;" onclick="eliminarCaptura(${idx})">X</button>
           </div>
+          <img src="${cap.imagen}?t=${Date.now()}" class="preview-img" style="height:110px;" onerror="this.src='escudo-generico.svg'">
+          <label>Título de la Captura</label>
+          <input type="text" id="cap-tit-${idx}" value="${cap.titulo}">
+          <input type="file" id="cap-file-${idx}" accept="image/*" style="font-size:0.8rem; color:var(--muted);">
         `;
+        cont.appendChild(div);
       });
     }
 
     function agregarCaptura() {
-      appData.capturas.push({ titulo: "Nueva captura del juego", imagen: "escudo-generico.svg" });
+      sincronizarMemoria();
+      appData.capturas.push({ titulo: 'Nueva captura del juego', imagen: 'escudo-generico.svg' });
       renderCapturas();
     }
 
-    function eliminarCaptura(i) {
-      appData.capturas.splice(i, 1);
+    function eliminarCaptura(idx) {
+      sincronizarMemoria();
+      appData.capturas.splice(idx, 1);
       renderCapturas();
-    }
-
-    function renderChangelog() {
-      const cont = document.getElementById('changelog-editor');
-      cont.innerHTML = '';
-      appData.changelog.forEach((cl, i) => {
-        const lines = (cl.cambios || []).join('\n');
-        cont.innerHTML += `
-          <div class="item-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <strong>Versión #${i + 1}</strong>
-              <button type="button" class="btn btn-sm btn-danger" onclick="eliminarChangelog(${i})">Eliminar</button>
-            </div>
-            <div class="grid-2">
-              <div><label>Versión</label><input type="text" id="cl-ver-${i}" value="${cl.version}"></div>
-              <div><label>Fecha</label><input type="text" id="cl-date-${i}" value="${cl.fecha}"></div>
-            </div>
-            <label>Lista de novedades (una por línea)</label>
-            <textarea id="cl-items-${i}" rows="3">${lines}</textarea>
-          </div>
-        `;
-      });
-    }
-
-    function agregarChangelog() {
-      appData.changelog.unshift({ version: "v0.2.0", fecha: "Noviembre 2026", cambios: ["Mejoras generales de jugabilidad."] });
-      renderChangelog();
-    }
-
-    function eliminarChangelog(i) {
-      appData.changelog.splice(i, 1);
-      renderChangelog();
     }
 
     function renderClubes() {
       const cont = document.getElementById('clubs-editor');
+      document.getElementById('club-count').textContent = appData.clubes.length;
       cont.innerHTML = '';
       appData.clubes.forEach((club, index) => {
         const row = document.createElement('div');
@@ -238,7 +289,7 @@
           <img src="${club.escudo}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
           <div>
             <label>Nombre del Club</label>
-            <input type="text" id="club-name-${index}" value="${club.nombre}">
+            <input type="text" id="club-nom-${index}" value="${club.nombre}">
           </div>
           <div>
             <label>País</label>
@@ -248,35 +299,114 @@
             <label>Estado</label>
             <select id="lic-${index}">
               <option value="false" ${!club.licenciado ? 'selected' : ''}>Pendiente</option>
-              <option value="true" ${club.licenciado ? 'selected' : ''}>Licenciado</option>
+              <option value="true" ${club.licenciado ? 'selected' : ''}>Oficial Licenciado</option>
             </select>
           </div>
           <div>
             <label>Escudo (PNG/SVG)</label>
-            <input type="file" id="file-${index}" accept="image/*" style="font-size:0.78rem;">
+            <input type="file" id="file-${index}" accept="image/*" style="font-size:0.75rem; color:var(--muted);">
+            <label class="chk-row" style="margin:4px 0 0; font-size:0.75rem;">
+              <input type="checkbox" id="club-rmbg-${index}"> Quitar fondo
+            </label>
           </div>
-          <button type="button" class="btn btn-sm btn-danger" onclick="eliminarClub(${index})">Quitar</button>
+          <button type="button" class="btn-del" title="Eliminar club" onclick="eliminarClub(${index})">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
         `;
         cont.appendChild(row);
       });
     }
 
     function agregarClub() {
-      const id = 'club_' + Date.now();
+      sincronizarMemoria();
+      const uid = 'club_' + Date.now();
       appData.clubes.unshift({
-        id: id,
-        nombre: "Nuevo Club FC",
-        pais: "Costa Rica",
-        estado: "Pendiente de licencia",
+        id: uid,
+        nombre: 'Nuevo Club',
+        pais: 'Costa Rica',
+        estado: 'Pendiente de licencia',
         licenciado: false,
-        escudo: "escudo-generico.svg"
+        escudo: 'escudo-generico.svg'
       });
       renderClubes();
     }
 
     function eliminarClub(index) {
+      sincronizarMemoria();
       appData.clubes.splice(index, 1);
       renderClubes();
+    }
+
+    function renderChangelog() {
+      const cont = document.getElementById('changelog-editor');
+      cont.innerHTML = '';
+      appData.changelog.forEach((log, idx) => {
+        const div = document.createElement('div');
+        div.className = 'sub-box';
+        div.style.marginBottom = '0.8rem';
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between; gap:1rem; margin-bottom:0.5rem;">
+            <div style="flex:1;">
+              <label>Versión</label>
+              <input type="text" id="log-ver-${idx}" value="${log.version}">
+            </div>
+            <div style="flex:1;">
+              <label>Fecha</label>
+              <input type="text" id="log-fec-${idx}" value="${log.fecha}">
+            </div>
+            <button type="button" class="btn-del" style="margin-top:20px;" onclick="eliminarChangelog(${idx})">X</button>
+          </div>
+          <label>Lista de novedades (una por línea)</label>
+          <textarea id="log-txt-${idx}" rows="3">${(log.cambios || []).join('\n')}</textarea>
+        `;
+        cont.appendChild(div);
+      });
+    }
+
+    function agregarChangelog() {
+      sincronizarMemoria();
+      appData.changelog.unshift({
+        version: 'v0.2.0',
+        fecha: 'Noviembre 2026',
+        cambios: ['Nueva actualización del juego.']
+      });
+      renderChangelog();
+    }
+
+    function eliminarChangelog(idx) {
+      sincronizarMemoria();
+      appData.changelog.splice(idx, 1);
+      renderChangelog();
+    }
+
+    function sincronizarMemoria() {
+      appData.destacados.forEach((d, i) => {
+        const el = document.getElementById(`dest-club-${i}`);
+        if (el) d.club = el.value;
+      });
+      appData.capturas.forEach((c, i) => {
+        const el = document.getElementById(`cap-tit-${i}`);
+        if (el) c.titulo = el.value;
+      });
+      appData.clubes.forEach((c, i) => {
+        const nom = document.getElementById(`club-nom-${i}`);
+        const pais = document.getElementById(`club-pais-${i}`);
+        const lic = document.getElementById(`lic-${i}`);
+        if (nom) c.nombre = nom.value;
+        if (pais) c.pais = pais.value;
+        if (lic) {
+          c.licenciado = lic.value === 'true';
+          c.estado = c.licenciado ? 'Club Oficial Licenciado' : 'Pendiente de licencia';
+        }
+      });
+      appData.changelog.forEach((l, i) => {
+        const v = document.getElementById(`log-ver-${i}`);
+        const f = document.getElementById(`log-fec-${i}`);
+        const t = document.getElementById(`log-txt-${i}`);
+        if (v) l.version = v.value;
+        if (f) l.fecha = f.value;
+        if (t) l.cambios = t.value.split('\n').map(s => s.trim()).filter(Boolean);
+      });
     }
 
     function fileToBase64(file) {
@@ -285,6 +415,87 @@
         reader.onload = () => resolve(reader.result.split(',')[1]);
         reader.onerror = reject;
         reader.readAsDataURL(file);
+      });
+    }
+
+    // Removedor de fondo automático por inundación desde bordes (Flood Fill + Suavizado)
+    function removeBackgroundFromFile(file, tolerance = 32) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imgData.data;
+          const w = canvas.width;
+          const h = canvas.height;
+
+          // Muestrear color de fondo desde las 4 esquinas
+          const corners = [0, (w - 1) * 4, ((h - 1) * w) * 4, ((h * w) - 1) * 4];
+          let bgR = 0, bgG = 0, bgB = 0;
+          corners.forEach(idx => {
+            bgR += data[idx];
+            bgG += data[idx + 1];
+            bgB += data[idx + 2];
+          });
+          bgR = Math.round(bgR / 4);
+          bgG = Math.round(bgG / 4);
+          bgB = Math.round(bgB / 4);
+
+          const visited = new Uint8Array(w * h);
+          const stack = [];
+
+          // Iniciar flood-fill desde todos los bordes exteriores
+          for (let x = 0; x < w; x++) {
+            stack.push(x);
+            stack.push((h - 1) * w + x);
+          }
+          for (let y = 0; y < h; y++) {
+            stack.push(y * w);
+            stack.push(y * w + (w - 1));
+          }
+
+          function colorDist(pos) {
+            const i = pos * 4;
+            const dr = data[i] - bgR;
+            const dg = data[i + 1] - bgG;
+            const db = data[i + 2] - bgB;
+            return Math.sqrt(dr * dr + dg * dg + db * db);
+          }
+
+          while (stack.length > 0) {
+            const pos = stack.pop();
+            if (visited[pos]) continue;
+            visited[pos] = 1;
+
+            const dist = colorDist(pos);
+            if (dist <= tolerance) {
+              data[pos * 4 + 3] = 0; // Transparente total
+              const x = pos % w;
+              const y = (pos - x) / w;
+              if (x > 0 && !visited[pos - 1]) stack.push(pos - 1);
+              if (x < w - 1 && !visited[pos + 1]) stack.push(pos + 1);
+              if (y > 0 && !visited[pos - w]) stack.push(pos - w);
+              if (y < h - 1 && !visited[pos + w]) stack.push(pos + w);
+            } else if (dist <= tolerance * 1.45) {
+              // Suavizado de borde (anti-aliasing)
+              const alpha = Math.min(255, Math.round(((dist - tolerance) / (tolerance * 0.45)) * 255));
+              data[pos * 4 + 3] = Math.min(data[pos * 4 + 3], alpha);
+            }
+          }
+
+          ctx.putImageData(imgData, 0, 0);
+          URL.revokeObjectURL(url);
+          const pngDataUrl = canvas.toDataURL('image/png');
+          resolve(pngDataUrl.split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = url;
       });
     }
 
@@ -309,7 +520,10 @@
 
       const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
         method: 'PUT',
-        headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          Authorization: `token ${token}`,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(body)
       });
       if (!res.ok) throw new Error('Error subiendo ' + path);
@@ -322,81 +536,100 @@
 
       if (!token) {
         fb.className = 'status-msg status-err';
-        fb.textContent = 'Debes ingresar tu Token de GitHub (ghp_...).';
+        fb.textContent = 'Debes ingresar tu Token de GitHub para guardar cambios.';
         return;
       }
 
       localStorage.setItem('mthi_gh_token', token);
       btn.disabled = true;
       fb.className = 'status-msg status-ok';
-      fb.textContent = 'Guardando imágenes y actualizando la web oficial...';
+      fb.textContent = 'Procesando imágenes y actualizando la web oficial...';
 
       try {
+        sincronizarMemoria();
+
         appData.juego.titulo = document.getElementById('edit-titulo').value;
         appData.juego.version = document.getElementById('edit-version').value;
         appData.juego.tamano = document.getElementById('edit-tamano').value;
+        appData.juego.androidMinimo = document.getElementById('edit-android').value;
         appData.juego.apkUrl = document.getElementById('edit-apk').value;
+        appData.juego.trailerUrl = document.getElementById('edit-trailer').value;
         appData.juego.subtitulo = document.getElementById('edit-subtitulo').value;
 
+        // Fondo de estadio
+        const estFile = document.getElementById('file-estadio');
+        if (estFile && estFile.files.length > 0) {
+          const f = estFile.files[0];
+          const ext = f.name.split('.').pop();
+          const path = `estadio-bg.${ext}`;
+          const b64 = await fileToBase64(f);
+          await subirArchivoGitHub(path, b64, token, 'Actualizar fondo de estadio');
+          appData.juego.estadioBg = path;
+        }
+
+        // Top 3 jugadores con opción de quitar fondo automático
         for (let i = 0; i < appData.destacados.length; i++) {
-          appData.destacados[i].club = document.getElementById(`dest-club-${i}`).value;
           const fInput = document.getElementById(`dest-file-${i}`);
           if (fInput && fInput.files.length > 0) {
-            const file = fInput.files[0];
-            const ext = file.name.split('.').pop();
-            const path = `destacados/jugador_${i + 1}.${ext}`;
-            const b64 = await fileToBase64(file);
+            const f = fInput.files[0];
+            const rmBg = document.getElementById(`dest-rmbg-${i}`).checked;
+            const tol = parseInt(document.getElementById(`dest-tol-${i}`).value, 10) || 32;
+            let b64, path;
+            if (rmBg) {
+              b64 = await removeBackgroundFromFile(f, tol);
+              path = `jugador${i + 1}.png`;
+            } else {
+              const ext = f.name.split('.').pop();
+              b64 = await fileToBase64(f);
+              path = `jugador${i + 1}.${ext}`;
+            }
             await subirArchivoGitHub(path, b64, token, `Actualizar jugador destacado ${i + 1}`);
             appData.destacados[i].imagen = path;
           }
         }
 
+        // Capturas
         for (let i = 0; i < appData.capturas.length; i++) {
-          appData.capturas[i].titulo = document.getElementById(`cap-title-${i}`).value;
-          const cInput = document.getElementById(`cap-file-${i}`);
-          if (cInput && cInput.files.length > 0) {
-            const file = cInput.files[0];
-            const ext = file.name.split('.').pop();
-            const path = `capturas/cap_${Date.now()}_${i}.${ext}`;
-            const b64 = await fileToBase64(file);
+          const fInput = document.getElementById(`cap-file-${i}`);
+          if (fInput && fInput.files.length > 0) {
+            const f = fInput.files[0];
+            const ext = f.name.split('.').pop();
+            const path = `capturas/cap_${i + 1}_${Date.now()}.${ext}`;
+            const b64 = await fileToBase64(f);
             await subirArchivoGitHub(path, b64, token, `Subir captura ${i + 1}`);
             appData.capturas[i].imagen = path;
           }
         }
 
-        for (let i = 0; i < appData.changelog.length; i++) {
-          appData.changelog[i].version = document.getElementById(`cl-ver-${i}`).value;
-          appData.changelog[i].fecha = document.getElementById(`cl-date-${i}`).value;
-          const rawLines = document.getElementById(`cl-items-${i}`).value;
-          appData.changelog[i].cambios = rawLines.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-        }
-
+        // Clubes
         for (let i = 0; i < appData.clubes.length; i++) {
-          appData.clubes[i].nombre = document.getElementById(`club-name-${i}`).value;
-          appData.clubes[i].pais = document.getElementById(`club-pais-${i}`).value;
-          const isLic = document.getElementById(`lic-${i}`).value === 'true';
-          appData.clubes[i].licenciado = isLic;
-          appData.clubes[i].estado = isLic ? 'Club Oficial Licenciado' : 'Pendiente de licencia';
-
-          const fileInput = document.getElementById(`file-${i}`);
-          if (fileInput && fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const ext = file.name.split('.').pop();
-            const fileName = `escudos/${appData.clubes[i].id}.${ext}`;
-            const b64 = await fileToBase64(file);
-            await subirArchivoGitHub(fileName, b64, token, `Actualizar escudo de ${appData.clubes[i].nombre}`);
-            appData.clubes[i].escudo = fileName;
+          const fInput = document.getElementById(`file-${i}`);
+          if (fInput && fInput.files.length > 0) {
+            const f = fInput.files[0];
+            const rmBg = document.getElementById(`club-rmbg-${i}`).checked;
+            let b64, path;
+            if (rmBg) {
+              b64 = await removeBackgroundFromFile(f, 30);
+              path = `escudos/${appData.clubes[i].id}.png`;
+            } else {
+              const ext = f.name.split('.').pop();
+              b64 = await fileToBase64(f);
+              path = `escudos/${appData.clubes[i].id}.${ext}`;
+            }
+            await subirArchivoGitHub(path, b64, token, `Actualizar escudo de ${appData.clubes[i].nombre}`);
+            appData.clubes[i].escudo = path;
           }
         }
 
         const jsonStr = JSON.stringify(appData, null, 2);
-        await subirArchivoGitHub('datos.json', textToBase64(jsonStr), token, 'Actualizar configuración completa v3');
+        const jsonBase64 = textToBase64(jsonStr);
+        await subirArchivoGitHub('datos.json', jsonBase64, token, 'Actualizar configuración web v4.0');
 
-        fb.textContent = 'Cambios publicados correctamente. Recargando...';
-        setTimeout(() => location.reload(), 1800);
+        fb.textContent = '¡Cambios publicados! La web oficial y las imágenes transparentes ya están activas.';
+        setTimeout(() => location.reload(), 2000);
       } catch (err) {
         fb.className = 'status-msg status-err';
-        fb.textContent = 'Error al guardar: revisa tu Token de GitHub y conexión.';
+        fb.textContent = 'Error al publicar: Verifica que tu Token de GitHub (ghp_...) tenga permiso de repositorio (repo).';
       } finally {
         btn.disabled = false;
       }
