@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ELEVEN | Descarga Oficial - MthiGamesCR</title>
+  <title>ELEVEN | MthiGamesCR - Descarga Oficial</title>
   <style>
     :root {
       --bg-dark: #060913;
@@ -16,30 +16,31 @@
       --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    html { scroll-behavior: smooth; }
     body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
     
     /* Navegación */
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 6%; border-bottom: 1px solid var(--border);
+      padding: 1rem 6%; border-bottom: 1px solid var(--border);
       background: rgba(6, 9, 19, 0.92); backdrop-filter: blur(12px);
       position: sticky; top: 0; z-index: 100;
     }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; letter-spacing: 0.5px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.25rem; letter-spacing: 0.5px; text-decoration: none; color: var(--text-main); }
     .brand img { width: 34px; height: 40px; }
-    .nav-links { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+    .nav-links { display: flex; gap: 1.4rem; align-items: center; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: 0.2s; }
     .nav-links a:hover { color: var(--accent); }
     .lang-btn {
       background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main);
-      padding: 6px 12px; border-radius: 6px; font-weight: 800; font-size: 0.82rem;
-      cursor: pointer; transition: 0.2s;
+      padding: 5px 12px; border-radius: 6px; font-weight: 800; font-size: 0.82rem;
+      cursor: pointer; transition: 0.2s; letter-spacing: 0.5px;
     }
     .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     /* Hero Section */
     .hero {
-      padding: 4rem 6% 3rem;
+      padding: 4rem 6% 2.5rem;
       background: radial-gradient(circle at 75% 25%, rgba(16, 185, 129, 0.14), transparent 55%);
       display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center;
       max-width: 1320px; margin: 0 auto;
@@ -48,211 +49,161 @@
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(16, 185, 129, 0.12); color: var(--accent);
       border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 14px;
-      border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.2rem;
+      border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1.1rem;
     }
-    h1 { font-size: 3.1rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.5px; }
-    .hero p { color: var(--text-muted); font-size: 1.08rem; margin-bottom: 2rem; max-width: 560px; }
+    h1 { font-size: 3.1rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.5px; text-transform: uppercase; }
+    .hero p { color: var(--text-muted); font-size: 1.08rem; margin-bottom: 1.8rem; max-width: 560px; }
     
-    .cta-group { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .cta-group { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.4rem; }
     .btn-primary {
-      background: var(--accent); color: #022c22; font-weight: 800; font-size: 1.05rem;
-      padding: 14px 28px; border-radius: 8px; text-decoration: none;
+      background: var(--accent); color: #022c22; font-weight: 800; font-size: 1.02rem;
+      padding: 14px 26px; border-radius: 8px; text-decoration: none;
       display: inline-flex; align-items: center; gap: 10px; transition: 0.2s;
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
     }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
     .btn-secondary {
-      background: var(--bg-card); color: var(--text-main); font-weight: 700; font-size: 1rem;
-      padding: 14px 24px; border-radius: 8px; text-decoration: none; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-main); font-weight: 700; font-size: 0.98rem;
+      padding: 14px 22px; border-radius: 8px; text-decoration: none; border: 1px solid var(--border);
       display: inline-flex; align-items: center; gap: 10px; transition: 0.2s;
     }
     .btn-secondary:hover { border-color: var(--text-muted); background: var(--bg-card-hover); }
 
-    .meta-specs { display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.88rem; font-weight: 600; flex-wrap: wrap; }
+    .meta-specs { display: flex; gap: 1.5rem; color: var(--text-muted); font-size: 0.88rem; font-weight: 600; }
     .meta-specs span { display: flex; align-items: center; gap: 6px; }
 
-    /* Escenario Top 3 Jugadores + Estadio (Tamaño equilibrado) */
+    /* Escenario Top 3 Jugadores + Estadio */
     .hero-visual {
-      background-color: var(--bg-card);
+      background-color: #0b1120;
       background-size: cover;
       background-position: center;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem 1rem 1.2rem;
+      padding: 1.5rem 1rem 1.25rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.65);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65);
+      min-height: 360px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      min-height: 360px;
       justify-content: flex-end;
     }
     .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(6, 9, 19, 0.12) 0%, rgba(6, 9, 19, 0.45) 65%, rgba(6, 9, 19, 0.94) 100%);
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(6, 9, 19, 0.12) 0%, rgba(6, 9, 19, 0.35) 58%, rgba(6, 9, 19, 0.92) 100%);
       z-index: 1;
+      pointer-events: none;
     }
     .players-stage {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-      height: 270px;
-      margin-bottom: 10px;
+      display: flex; align-items: flex-end; justify-content: center;
+      position: relative; z-index: 2; height: 265px; width: 100%;
     }
     .player-slot {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .player-slot.side {
-      width: 34%;
-      z-index: 2;
-      margin: 0 -22px;
-    }
-    .player-slot.center {
-      width: 40%;
-      z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      width: 34%; position: relative;
     }
     .player-slot img {
       width: 100%;
-      height: auto;
-      max-height: 245px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.85));
-      -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+      height: 225px;
+      object-fit: cover;
+      object-position: top center;
+      transform: scale(1.42);
+      transform-origin: bottom center;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,0.85));
       mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
-      transform: scale(1.22);
-      transform-origin: bottom center;
+      -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+      transition: transform 0.3s ease;
     }
+    .player-slot.side-left { margin-right: -22px; z-index: 2; }
+    .player-slot.side-right { margin-left: -22px; z-index: 2; }
+    .player-slot.center { z-index: 4; width: 38%; }
     .player-slot.center img {
-      max-height: 270px;
-      transform: scale(1.28);
+      height: 250px;
+      transform: scale(1.48);
       transform-origin: bottom center;
     }
-    .kits-bar {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      position: relative;
-      z-index: 4;
-      flex-wrap: wrap;
+    .kit-tags-row {
+      display: flex; justify-content: center; gap: 10px; position: relative; z-index: 5; margin-top: 10px;
     }
     .kit-tag {
-      background: rgba(15, 22, 38, 0.9);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 5px;
-      text-align: center;
-      backdrop-filter: blur(4px);
+      background: rgba(15, 22, 38, 0.92); border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--accent); font-size: 0.72rem; font-weight: 800; padding: 4px 10px;
+      border-radius: 4px; text-align: center; white-space: nowrap;
+      backdrop-filter: blur(6px);
     }
 
-    /* Vitrina de Licencias y Barra de Progreso */
+    /* Barra Vitrina de Licenciados */
     .licensed-banner {
-      max-width: 1320px; margin: 0 auto 1rem; padding: 0 6%;
+      max-width: 1320px; margin: 1rem auto 0; padding: 0 6%;
     }
-    .licensed-box {
-      background: linear-gradient(90deg, rgba(16,185,129,0.08), rgba(15,22,38,0.95));
-      border: 1px solid rgba(16,185,129,0.28); border-radius: 12px;
-      padding: 1.4rem 1.8rem;
+    .licensed-inner {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.25rem 1.8rem; display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 1.5rem;
     }
-    .progress-header {
-      display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .progress-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-main); }
-    .progress-count { font-size: 0.9rem; font-weight: 800; color: var(--accent); }
-    .progress-track {
-      width: 100%; height: 8px; background: #060913; border-radius: 99px; overflow: hidden; margin-bottom: 1.2rem; border: 1px solid var(--border);
-    }
-    .progress-fill {
-      height: 100%; background: var(--accent); width: 0%; transition: width 0.6s ease;
-    }
-    .licensed-row {
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    }
-    .licensed-logos { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .licensed-logos img {
-      width: 48px; height: 48px; object-fit: contain; background: #060913;
-      padding: 5px; border-radius: 8px; border: 1px solid rgba(16,185,129,0.35); transition: 0.2s;
-    }
-    .licensed-logos img:hover { transform: scale(1.1); }
+    .progress-area { flex: 1; min-width: 240px; }
+    .progress-header { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+    .progress-bar-bg { width: 100%; height: 8px; background: #060913; border-radius: 99px; overflow: hidden; border: 1px solid var(--border); }
+    .progress-bar-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.5s ease; }
+    .official-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .official-logos img { width: 42px; height: 42px; object-fit: contain; transition: transform 0.2s; }
+    .official-logos img:hover { transform: scale(1.15); }
+    .no-licenses-text { color: var(--text-muted); font-size: 0.88rem; font-style: italic; }
 
     /* Secciones Generales */
     .section { max-width: 1320px; margin: 0 auto; padding: 3.5rem 6%; }
     .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.4rem; }
-    .section-sub { color: var(--text-muted); margin-bottom: 2.2rem; }
+    .section-sub { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.98rem; }
 
     /* Video Tráiler */
     .video-wrapper {
       position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
       border-radius: 14px; border: 1px solid var(--border); background: var(--bg-card);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.45);
     }
     .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
     /* Características */
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.4rem; }
     .feature-card {
       background: var(--bg-card); border: 1px solid var(--border);
-      padding: 1.8rem; border-radius: 12px; transition: 0.2s;
+      padding: 1.7rem; border-radius: 12px; transition: 0.2s;
     }
     .feature-card:hover { border-color: rgba(16, 185, 129, 0.4); transform: translateY(-3px); }
     .icon-box {
       width: 44px; height: 44px; border-radius: 8px; background: rgba(16, 185, 129, 0.12);
       color: var(--accent); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
     }
-    .feature-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
-    .feature-card p { color: var(--text-muted); font-size: 0.92rem; }
+    .feature-card h3 { font-size: 1.12rem; margin-bottom: 0.45rem; }
+    .feature-card p { color: var(--text-muted); font-size: 0.9rem; }
 
-    /* Galería de Capturas */
+    /* Galería Capturas */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
     .gallery-item {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
       overflow: hidden; cursor: pointer; transition: 0.2s;
     }
-    .gallery-item:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .gallery-item img { width: 100%; height: 170px; object-fit: cover; display: block; background: #060913; }
-    .gallery-caption { padding: 0.85rem 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
-
-    /* Lightbox */
-    .lightbox {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-      z-index: 999; align-items: center; justify-content: center; padding: 2rem; flex-direction: column;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 80vh; border-radius: 10px; border: 1px solid var(--border); }
-    .lightbox-close {
-      margin-top: 1rem; background: var(--accent); color: #022c22; border: none;
-      padding: 8px 20px; border-radius: 6px; font-weight: 800; cursor: pointer;
-    }
+    .gallery-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .gallery-caption { padding: 10px 14px; font-size: 0.88rem; font-weight: 600; color: var(--text-main); }
 
     /* Filtros y Grid de Clubes */
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.8rem; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
     .filter-btn {
-      background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border);
-      padding: 8px 16px; border-radius: 6px; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+      padding: 7px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: 0.2s;
     }
-    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #022c22; border-color: var(--accent); font-weight: 800; }
+    .filter-btn.active, .filter-btn:hover { background: rgba(16, 185, 129, 0.15); border-color: var(--accent); color: var(--accent); }
 
-    .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 1.25rem; }
+    .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1.2rem; }
     .club-card {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.5rem; text-align: center; transition: 0.2s; display: flex; flex-direction: column; align-items: center;
+      padding: 1.4rem; text-align: center; transition: 0.2s; display: flex; flex-direction: column; align-items: center;
     }
     .club-card:hover { background: var(--bg-card-hover); border-color: #334155; }
-    .club-card img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 1rem; }
-    .club-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .club-country { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+    .club-card img { width: 78px; height: 78px; object-fit: contain; margin-bottom: 0.9rem; }
+    .club-card h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .club-country { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
     .status-pill {
       font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 4px;
       text-transform: uppercase; letter-spacing: 0.4px;
@@ -262,56 +213,58 @@
 
     /* Changelog */
     .changelog-list { display: flex; flex-direction: column; gap: 1.2rem; }
-    .log-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
-      border-radius: 10px; padding: 1.4rem 1.8rem;
-    }
-    .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
-    .log-version { font-weight: 800; font-size: 1.1rem; color: var(--accent); }
-    .log-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
-    .log-card ul { padding-left: 1.2rem; color: var(--text-muted); font-size: 0.94rem; }
+    .log-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+    .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+    .log-ver { background: rgba(16, 185, 129, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 5px; font-weight: 800; font-size: 0.85rem; }
+    .log-date { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+    .log-card ul { padding-left: 1.2rem; color: var(--text-muted); font-size: 0.92rem; }
     .log-card li { margin-bottom: 4px; }
 
-    /* Guía de instalación y Buzón */
+    /* Guía de instalación y Contacto */
     .install-box {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+      padding: 1.8rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
     }
-    .step-num { color: var(--accent); font-weight: 900; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 4px; }
+    .step-num { color: var(--accent); font-weight: 900; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 4px; }
 
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .contact-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem;
-    }
+    .contact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; }
     .contact-card h3 { margin-bottom: 0.5rem; font-size: 1.15rem; }
-    .contact-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.2rem; }
+    .contact-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 999;
+      display: none; justify-content: center; align-items: center; padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92%; max-height: 85vh; border-radius: 8px; border: 1px solid var(--border); }
 
     footer {
-      border-top: 1px solid var(--border); padding: 2.5rem 6%; margin-top: 2rem;
+      border-top: 1px solid var(--border); padding: 2.2rem 6%; margin-top: 2rem;
       display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
-      color: var(--text-muted); font-size: 0.9rem; gap: 1rem;
+      color: var(--text-muted); font-size: 0.88rem; gap: 1rem;
     }
-    footer a { color: var(--text-muted); text-decoration: none; }
-    footer a:hover { color: var(--text-main); }
 
     @media (max-width: 920px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 3rem; }
-      .hero p { margin: 0 auto 2rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 2.5rem; }
+      .hero p { margin: 0 auto 1.8rem; }
       .cta-group, .meta-specs { justify-content: center; }
-      h1 { font-size: 2.4rem; }
+      h1 { font-size: 2.3rem; }
+      .nav-links a { display: none; }
       .players-stage { height: 220px; }
-      .player-slot img { max-height: 200px; }
-      .player-slot.center img { max-height: 220px; }
+      .player-slot img { height: 185px; transform: scale(1.38); }
+      .player-slot.center img { height: 210px; transform: scale(1.44); }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand">
-      <img src="escudo-generico.svg" alt="Logo MthiGamesCR">
+    <a href="#" class="brand">
+      <img src="escudo-generico.svg" alt="MthiGamesCR">
       <span>MthiGamesCR</span>
-    </div>
+    </a>
     <nav class="nav-links">
       <a href="#trailer" data-i18n="nav_trailer">Tráiler</a>
       <a href="#caracteristicas" data-i18n="nav_features">Características</a>
@@ -330,7 +283,7 @@
           <span id="game-version">v0.1.0 Alpha</span>
         </div>
         <h1 id="game-title">ELEVEN</h1>
-        <p id="game-subtitle">Fútbol competitivo para Android. Sin compras que den ventaja (Zero Pay-to-Win), modo carrera completo, duelos multijugador y eventos semanales.</p>
+        <p id="game-subtitle">Cargando descripción...</p>
         
         <div class="cta-group">
           <a id="btn-download" href="#" class="btn-primary">
@@ -339,56 +292,51 @@
           </a>
           <a id="btn-youtube" href="https://www.youtube.com/@mthigamesCR" target="_blank" class="btn-secondary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4"></rect><polygon points="10 9 15 12 10 15 10 9"></polygon></svg>
-            <span data-i18n="btn_youtube">Canal de YouTube</span>
+            <span data-i18n="btn_yt">Canal de YouTube</span>
           </a>
         </div>
 
         <div class="meta-specs">
           <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg>
-            <span data-i18n="spec_size">Peso</span>: <strong id="game-size">--</strong>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            <span data-i18n="spec_size">Peso:</span> <strong id="game-size">--</strong>
           </span>
           <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect></svg>
-            <span data-i18n="spec_os">Sistema</span>: <strong id="game-android">--</strong>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            <span data-i18n="spec_os">Sistema:</span> <strong id="game-android">--</strong>
           </span>
         </div>
       </div>
 
-      <!-- Escenario de estadio + 3 jugadores PNG -->
-      <div class="hero-visual" id="hero-stadium" style="background-image: url('estadio-bg.png');">
-        <div class="players-stage" id="players-stage"></div>
-        <div class="kits-bar" id="kits-bar"></div>
+      <div id="hero-stage-box" class="hero-visual" style="background-image: url('estadio-bg.png');">
+        <div id="players-stage" class="players-stage"></div>
+        <div id="kit-tags-row" class="kit-tags-row"></div>
       </div>
     </section>
 
-    <!-- Barra de Progreso y Vitrina de Escudos Oficiales -->
-    <section class="licensed-banner">
-      <div class="licensed-box">
-        <div class="progress-header">
-          <span class="progress-title" data-i18n="lic_progress">Progreso de Licencias Oficiales</span>
-          <span class="progress-count" id="lic-counter">0 / 0</span>
+    <div class="licensed-banner">
+      <div class="licensed-inner">
+        <div class="progress-area">
+          <div class="progress-header">
+            <span data-i18n="lic_progress_title">Progreso de Licencias Oficiales</span>
+            <span id="lic-counter" style="color: var(--accent);">0 / 0</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div id="lic-bar" class="progress-bar-fill"></div>
+          </div>
         </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="lic-bar"></div>
-        </div>
-        <div class="licensed-row">
-          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;" data-i18n="lic_bar_sub">Clubes con autorización oficial activa:</span>
-          <div id="licensed-logos" class="licensed-logos"></div>
-        </div>
+        <div id="official-logos" class="official-logos"></div>
       </div>
-    </section>
+    </div>
 
-    <!-- Reproductor de Tráiler -->
     <section id="trailer" class="section">
-      <h2 class="section-title" data-i18n="trailer_title">Tráiler y Avances Oficiales</h2>
-      <p class="section-sub" data-i18n="trailer_sub">Mira el desarrollo del juego directamente desde nuestro canal oficial de YouTube.</p>
+      <h2 class="section-title" data-i18n="trailer_title">Tráiler y Avances de Desarrollo</h2>
+      <p class="section-sub" data-i18n="trailer_sub">Mira el estado actual del motor de partidos directamente desde nuestro canal oficial.</p>
       <div class="video-wrapper">
-        <iframe id="yt-embed" src="https://www.youtube.com/embed?listType=user_uploads&list=mthigamesCR" allowfullscreen></iframe>
+        <iframe id="yt-embed" src="" title="MthiGamesCR Gameplay" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </section>
 
-    <!-- Características -->
     <section id="caracteristicas" class="section">
       <h2 class="section-title" data-i18n="feat_title">Diseñado para competir en igualdad</h2>
       <p class="section-sub" data-i18n="feat_sub">Una experiencia de fútbol móvil enfocada en la habilidad dentro de la cancha.</p>
@@ -410,14 +358,14 @@
         </div>
         <div class="feature-card">
           <div class="icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
           <h3 data-i18n="f3_t">Multijugador Online</h3>
           <p data-i18n="f3_d">Enfréntate en tiempo real contra otros jugadores en divisiones competitivas y torneos de fin de semana.</p>
         </div>
         <div class="feature-card">
           <div class="icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           </div>
           <h3 data-i18n="f4_t">Eventos Dinámicos</h3>
           <p data-i18n="f4_d">Desafíos semanales y recompensas desbloqueables jugando partidos sin necesidad de gastar dinero real.</p>
@@ -425,312 +373,283 @@
       </div>
     </section>
 
-    <!-- Galería de Capturas -->
     <section id="galeria" class="section">
       <h2 class="section-title" data-i18n="gal_title">Capturas In-Game</h2>
-      <p class="section-sub" data-i18n="gal_sub">Haz clic en cualquier imagen para ampliarla en pantalla completa.</p>
+      <p class="section-sub" data-i18n="gal_sub">Haz clic en cualquier captura para ampliarla en pantalla completa.</p>
       <div id="gallery-container" class="gallery-grid"></div>
     </section>
 
-    <!-- Directorio de Clubes -->
     <section id="clubes" class="section">
       <h2 class="section-title" data-i18n="clubs_title">Directorio de Clubes</h2>
-      <p class="section-sub" data-i18n="clubs_sub">Los escudos y uniformes oficiales se activan automáticamente conforme los clubes confirman su autorización.</p>
+      <p class="section-sub" data-i18n="clubs_sub">Los escudos oficiales se activan automáticamente conforme los clubes confirman su autorización.</p>
       <div id="filter-bar" class="filter-bar"></div>
       <div id="clubs-container" class="clubs-grid"></div>
     </section>
 
-    <!-- Changelog -->
     <section id="novedades" class="section">
       <h2 class="section-title" data-i18n="log_title">Historial de Actualizaciones</h2>
-      <p class="section-sub" data-i18n="log_sub">Registro público de versiones, mejoras jugables y nuevas licencias incorporadas.</p>
+      <p class="section-sub" data-i18n="log_sub">Registro oficial de mejoras, nuevos escudos y versiones del APK.</p>
       <div id="changelog-container" class="changelog-list"></div>
     </section>
 
-    <!-- Guía de instalación -->
     <section id="instalar" class="section">
       <h2 class="section-title" data-i18n="inst_title">Guía rápida de instalación</h2>
       <p class="section-sub" data-i18n="inst_sub">Al ser una distribución independiente directa, sigue estos tres pasos en tu dispositivo Android:</p>
       <div class="install-box">
         <div>
-          <div class="step-num">01</div>
+          <div class="step-num" data-i18n="s1_n">Paso 01</div>
           <h4 data-i18n="s1_t">Descarga el archivo APK</h4>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;" data-i18n="s1_d">Pulsa el botón verde de descarga oficial en la parte superior de esta página.</p>
         </div>
         <div>
-          <div class="step-num">02</div>
+          <div class="step-num" data-i18n="s2_n">Paso 02</div>
           <h4 data-i18n="s2_t">Permite fuentes externas</h4>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;" data-i18n="s2_d">Si Android lo solicita, activa "Instalar aplicaciones desconocidas" para tu navegador.</p>
         </div>
         <div>
-          <div class="step-num">03</div>
+          <div class="step-num" data-i18n="s3_n">Paso 03</div>
           <h4 data-i18n="s3_t">Instala y juega</h4>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;" data-i18n="s3_d">Abre el archivo descargado, completa la instalación y entra al campo.</p>
         </div>
       </div>
     </section>
 
-    <!-- Buzón de Contacto Directo -->
     <section id="contacto" class="section">
       <h2 class="section-title" data-i18n="cont_title">Contacto Oficial</h2>
-      <p class="section-sub" data-i18n="cont_sub">Canales directos para directivas de clubes de fútbol y soporte a jugadores.</p>
+      <p class="section-sub" data-i18n="cont_sub">Canales directos para directivas de clubes de fútbol y soporte técnico de jugadores.</p>
       <div class="contact-grid">
         <div class="contact-card">
-          <h3 data-i18n="c1_t">¿Representas a un Club de Fútbol?</h3>
-          <p data-i18n="c1_d">Si deseas incluir el nombre, escudo y uniforme de tu club de forma gratuita y no exclusiva en el juego (con jugadores 100% ficticios), escríbenos al correo de acuerdos.</p>
-          <a href="mailto:mathi280713@gmail.com?subject=Licencia%20Oficial%20de%20Club" class="btn-primary" style="font-size: 0.92rem; padding: 10px 20px;">mathi280713@gmail.com</a>
+          <h3 data-i18n="c1_t">Clubes y Licencias Oficiales</h3>
+          <p data-i18n="c1_d">¿Representas a un club de fútbol y deseas autorizar gratuitamente el uso de tu escudo y colores en el juego?</p>
+          <a href="mailto:mathi280713@gmail.com?subject=Licencia%20Oficial%20de%20Club" class="btn-primary" style="font-size: 0.9rem; padding: 10px 18px;">mathi280713@gmail.com</a>
         </div>
         <div class="contact-card">
-          <h3 data-i18n="c2_t">Soporte y Consultas Rápidas</h3>
-          <p data-i18n="c2_d">¿Encontraste algún error en el APK o tienes sugerencias para futuras actualizaciones? Contáctanos directamente.</p>
-          <a href="mailto:pmathias2807@gmail.com?subject=Soporte%20ELEVEN" class="btn-secondary" style="font-size: 0.92rem; padding: 10px 20px;">pmathias2807@gmail.com</a>
+          <h3 data-i18n="c2_t">Soporte y Comunidad</h3>
+          <p data-i18n="c2_d">Para consultas generales, sugerencias de mejora o reportes de errores en la versión Android.</p>
+          <a href="mailto:pmathias2807@gmail.com?subject=Soporte%20ELEVEN" class="btn-secondary" style="font-size: 0.9rem; padding: 10px 18px;">pmathias2807@gmail.com</a>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="lightbox" class="lightbox" onclick="this.classList.remove('active')">
+  <div id="lightbox" class="lightbox" onclick="this.classList.remove('open')">
     <img id="lightbox-img" src="" alt="Vista ampliada">
-    <button class="lightbox-close" data-i18n="btn_close">Cerrar vista</button>
   </div>
 
   <footer>
-    <div data-i18n="footer_text">Desarrollado de forma independiente por MthiGamesCR (Costa Rica). Todos los futbolistas son ficticios.</div>
-    <div>
-      <a href="https://www.youtube.com/@mthigamesCR" target="_blank">YouTube @mthigamesCR</a>
-    </div>
+    <div data-i18n="footer_txt">Desarrollado de forma independiente por MthiGamesCR (Costa Rica). Todos los futbolistas son ficticios.</div>
+    <div>MthiGamesCR &copy; 2026</div>
   </footer>
 
   <script>
     let currentLang = 'es';
     let globalData = null;
-    let currentFilter = 'ALL';
+    let activeFilter = 'ALL';
 
-    const i18n = {
+    const dict = {
       es: {
-        nav_trailer: 'Tráiler', nav_features: 'Características', nav_clubs: 'Clubes', nav_changelog: 'Novedades', nav_contact: 'Contacto',
-        btn_download: 'Descargar APK Oficial', btn_youtube: 'Canal de YouTube', spec_size: 'Peso', spec_os: 'Sistema',
-        lic_progress: 'Progreso de Licencias Oficiales', lic_bar_sub: 'Clubes con autorización oficial activa:',
-        trailer_title: 'Tráiler y Avances Oficiales', trailer_sub: 'Mira el desarrollo del juego directamente desde nuestro canal oficial de YouTube.',
-        feat_title: 'Diseñado para competir en igualdad', feat_sub: 'Una experiencia de fútbol móvil enfocada en la habilidad dentro de la cancha.',
-        f1_t: 'Cero Pay-to-Win', f1_d: 'Ninguna compra otorga ventajas estadísticas en el partido. El resultado depende únicamente de tu táctica y control.',
-        f2_t: 'Modo Carrera', f2_d: 'Toma el mando de tu club, gestiona fichajes ficticios, desarrolla canteranos y asciende hasta la máxima categoría.',
-        f3_t: 'Multijugador Online', f3_d: 'Enfréntate en tiempo real contra otros jugadores en divisiones competitivas y torneos de fin de semana.',
-        f4_t: 'Eventos Dinámicos', f4_d: 'Desafíos semanales y recompensas desbloqueables jugando partidos sin necesidad de gastar dinero real.',
-        gal_title: 'Capturas In-Game', gal_sub: 'Haz clic en cualquier imagen para ampliarla en pantalla completa.',
-        clubs_title: 'Directorio de Clubes', clubs_sub: 'Los escudos y uniformes oficiales se activan automáticamente conforme los clubes confirman su autorización.',
-        log_title: 'Historial de Actualizaciones', log_sub: 'Registro público de versiones, mejoras jugables y nuevas licencias incorporadas.',
-        inst_title: 'Guía rápida de instalación', inst_sub: 'Al ser una distribución independiente directa, sigue estos tres pasos en tu dispositivo Android:',
-        s1_t: 'Descarga el archivo APK', s1_d: 'Pulsa el botón verde de descarga oficial en la parte superior de esta página.',
-        s2_t: 'Permite fuentes externas', s2_d: 'Si Android lo solicita, activa "Instalar aplicaciones desconocidas" para tu navegador.',
-        s3_t: 'Instala y juega', s3_d: 'Abre el archivo descargado, completa la instalación y entra al campo.',
-        cont_title: 'Contacto Oficial', cont_sub: 'Canales directos para directivas de clubes de fútbol y soporte a jugadores.',
-        c1_t: '¿Representas a un Club de Fútbol?', c1_d: 'Si deseas incluir el nombre, escudo y uniforme de tu club de forma gratuita y no exclusiva en el juego (con jugadores 100% ficticios), escríbenos al correo de acuerdos.',
-        c2_t: 'Soporte y Consultas Rápidas', c2_d: '¿Encontraste algún error en el APK o tienes sugerencias para futuras actualizaciones? Contáctanos directamente.',
-        btn_close: 'Cerrar vista', footer_text: 'Desarrollado de forma independiente por MthiGamesCR (Costa Rica). Todos los futbolistas son ficticios.',
-        filter_all: 'Todos', filter_lic: 'Licenciados', status_lic: 'Club Oficial Licenciado', status_pen: 'Pendiente de licencia',
-        no_lic_yet: 'Próximamente escudos oficiales confirmados'
+        nav_trailer: "Tráiler", nav_features: "Características", nav_clubs: "Clubes", nav_changelog: "Novedades", nav_contact: "Contacto",
+        btn_download: "Descargar APK Oficial", btn_yt: "Canal de YouTube", spec_size: "Peso:", spec_os: "Sistema:",
+        lic_progress_title: "Progreso de Licencias Oficiales", trailer_title: "Tráiler y Avances de Desarrollo",
+        trailer_sub: "Mira el estado actual del motor de partidos directamente desde nuestro canal oficial.",
+        feat_title: "Diseñado para competir en igualdad", feat_sub: "Una experiencia de fútbol móvil enfocada en la habilidad dentro de la cancha.",
+        f1_t: "Cero Pay-to-Win", f1_d: "Ninguna compra otorga ventajas estadísticas en el partido. El resultado depende únicamente de tu táctica y control.",
+        f2_t: "Modo Carrera", f2_d: "Toma el mando de tu club, gestiona fichajes ficticios, desarrolla canteranos y asciende hasta la máxima categoría.",
+        f3_t: "Multijugador Online", f3_d: "Enfréntate en tiempo real contra otros jugadores en divisiones competitivas y torneos de fin de semana.",
+        f4_t: "Eventos Dinámicos", f4_d: "Desafíos semanales y recompensas desbloqueables jugando partidos sin necesidad de gastar dinero real.",
+        gal_title: "Capturas In-Game", gal_sub: "Haz clic en cualquier captura para ampliarla en pantalla completa.",
+        clubs_title: "Directorio de Clubes", clubs_sub: "Los escudos oficiales se activan automáticamente conforme los clubes confirman su autorización.",
+        log_title: "Historial de Actualizaciones", log_sub: "Registro oficial de mejoras, nuevos escudos y versiones del APK.",
+        inst_title: "Guía rápida de instalación", inst_sub: "Al ser una distribución independiente directa, sigue estos tres pasos en tu dispositivo Android:",
+        s1_n: "Paso 01", s1_t: "Descarga el archivo APK", s1_d: "Pulsa el botón verde de descarga oficial en la parte superior de esta página.",
+        s2_n: "Paso 02", s2_t: "Permite fuentes externas", s2_d: "Si Android lo solicita, activa 'Instalar aplicaciones desconocidas' para tu navegador.",
+        s3_n: "Paso 03", s3_t: "Instala y juega", s3_d: "Abre el archivo descargado, completa la instalación y entra al campo.",
+        cont_title: "Contacto Oficial", cont_sub: "Canales directos para directivas de clubes de fútbol y soporte técnico de jugadores.",
+        c1_t: "Clubes y Licencias Oficiales", c1_d: "¿Representas a un club de fútbol y deseas autorizar gratuitamente el uso de tu escudo y colores en el juego?",
+        c2_t: "Soporte y Comunidad", c2_d: "Para consultas generales, sugerencias de mejora o reportes de errores en la versión Android.",
+        footer_txt: "Desarrollado de forma independiente por MthiGamesCR (Costa Rica). Todos los futbolistas son ficticios.",
+        filter_all: "Todos", filter_lic: "Licenciados Oficiales", status_lic: "Club Oficial Licenciado", status_pen: "Pendiente de licencia",
+        no_lic_yet: "Próximamente escudos oficiales confirmados"
       },
       en: {
-        nav_trailer: 'Trailer', nav_features: 'Features', nav_clubs: 'Clubs', nav_changelog: 'Changelog', nav_contact: 'Contact',
-        btn_download: 'Download Official APK', btn_youtube: 'YouTube Channel', spec_size: 'Size', spec_os: 'OS',
-        lic_progress: 'Official Licensing Progress', lic_bar_sub: 'Clubs with active official authorization:',
-        trailer_title: 'Official Trailer & Devlogs', trailer_sub: 'Watch the game development progress directly from our official YouTube channel.',
-        feat_title: 'Built for Fair Competition', feat_sub: 'A mobile football experience focused purely on on-pitch skill.',
-        f1_t: 'Zero Pay-to-Win', f1_d: 'No purchase grants statistical advantages in matches. Results depend solely on your tactics and skill.',
-        f2_t: 'Career Mode', f2_d: 'Take charge of your club, manage fictional transfers, develop youth players and earn promotion.',
-        f3_t: 'Online Multiplayer', f3_d: 'Compete in real-time against other players across ranked divisions and weekend tournaments.',
-        f4_t: 'Dynamic Events', f4_d: 'Weekly challenges and unlockable rewards earned by playing matches with zero real-money spending.',
-        gal_title: 'In-Game Screenshots', gal_sub: 'Click on any image to view it in full screen.',
-        clubs_title: 'Club Directory', clubs_sub: 'Official crests and kits unlock automatically as clubs confirm their authorization.',
-        log_title: 'Update History (Changelog)', log_sub: 'Public log of releases, gameplay improvements, and newly licensed clubs.',
-        inst_title: 'Quick Installation Guide', inst_sub: 'As a direct independent release, follow these three steps on your Android device:',
-        s1_t: 'Download the APK file', s1_d: 'Tap the green official download button at the top of this page.',
-        s2_t: 'Allow external sources', s2_d: 'If prompted by Android, enable "Install unknown apps" for your browser.',
-        s3_t: 'Install and play', s3_d: 'Open the downloaded file, complete installation, and step onto the pitch.',
-        cont_title: 'Official Contact', cont_sub: 'Direct channels for football club boards and player support.',
-        c1_t: 'Do you represent a Football Club?', c1_d: 'If you wish to feature your club name, crest, and kit free of charge and non-exclusively (with 100% fictional players), contact our licensing desk.',
-        c2_t: 'Support & Quick Inquiries', c2_d: 'Found a bug in the APK or have suggestions for future updates? Reach out directly.',
-        btn_close: 'Close view', footer_text: 'Independently developed by MthiGamesCR (Costa Rica). All footballers are fictional.',
-        filter_all: 'All', filter_lic: 'Licensed', status_lic: 'Official Licensed Club', status_pen: 'Pending License',
-        no_lic_yet: 'Official confirmed crests coming soon'
+        nav_trailer: "Trailer", nav_features: "Features", nav_clubs: "Clubs", nav_changelog: "Changelog", nav_contact: "Contact",
+        btn_download: "Download Official APK", btn_yt: "YouTube Channel", spec_size: "Size:", spec_os: "System:",
+        lic_progress_title: "Official Licensing Progress", trailer_title: "Official Trailer & Dev Updates",
+        trailer_sub: "Watch the current match engine progress directly from our official channel.",
+        feat_title: "Built for Fair Competition", feat_sub: "A mobile football experience focused purely on on-pitch skill.",
+        f1_t: "Zero Pay-to-Win", f1_d: "No in-app purchase grants statistical advantages. Match results depend solely on your tactics and control.",
+        f2_t: "Career Mode", f2_d: "Take charge of your club, manage fictional transfers, develop youth academy players and climb divisions.",
+        f3_t: "Online Multiplayer", f3_d: "Compete in real time against other players in ranked divisions and weekend tournaments.",
+        f4_t: "Dynamic Events", f4_d: "Weekly challenges and unlockable rewards earned by playing matches without spending real money.",
+        gal_title: "In-Game Screenshots", gal_sub: "Click any screenshot to expand it in full screen.",
+        clubs_title: "Clubs Directory", clubs_sub: "Official crests unlock automatically as clubs confirm their written authorization.",
+        log_title: "Update History (Changelog)", log_sub: "Official log of improvements, newly licensed crests and APK releases.",
+        inst_title: "Quick Installation Guide", inst_sub: "As an independent direct release, follow these three steps on your Android device:",
+        s1_n: "Step 01", s1_t: "Download the APK file", s1_d: "Tap the green official download button at the top of this page.",
+        s2_n: "Step 02", s2_t: "Allow external sources", s2_d: "If prompted by Android, enable 'Install unknown apps' for your browser.",
+        s3_n: "Step 03", s3_t: "Install and play", s3_d: "Open the downloaded file, complete installation and hit the pitch.",
+        cont_title: "Official Contact", cont_sub: "Direct channels for football club boards and player technical support.",
+        c1_t: "Clubs & Official Licensing", c1_d: "Do you represent a football club and wish to grant free non-exclusive permission for your crest and kit colours?",
+        c2_t: "Support & Community", c2_d: "For general inquiries, feedback or bug reports on the Android release.",
+        footer_txt: "Independently developed by MthiGamesCR (Costa Rica). All footballers are 100% fictional.",
+        filter_all: "All Clubs", filter_lic: "Officially Licensed", status_lic: "Officially Licensed Club", status_pen: "Pending License",
+        no_lic_yet: "Official club crests coming soon"
       }
     };
 
     function toggleLang() {
       currentLang = currentLang === 'es' ? 'en' : 'es';
       document.getElementById('lang-toggle').textContent = currentLang === 'es' ? 'EN' : 'ES';
-      aplicarIdioma();
-      if (globalData) {
-        renderBarraLicencias();
-        renderFiltros();
-        renderClubes();
-      }
+      applyTranslations();
+      if (globalData) renderAll();
     }
 
-    function aplicarIdioma() {
-      const dict = i18n[currentLang];
+    function applyTranslations() {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (dict[key]) el.textContent = dict[key];
+        if (dict[currentLang][key]) el.textContent = dict[currentLang][key];
       });
     }
 
-    function getYoutubeEmbed(url) {
-      if (!url) return 'https://www.youtube.com/embed?listType=user_uploads&list=mthigamesCR';
-      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
-      if (match && match[1]) return `https://www.youtube.com/embed/${match[1]}`;
-      return 'https://www.youtube.com/embed?listType=user_uploads&list=mthigamesCR';
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
     }
 
     async function cargarDatos() {
       try {
         const res = await fetch('datos.json?t=' + Date.now());
         globalData = await res.json();
-
-        document.getElementById('game-title').textContent = globalData.juego.titulo;
-        document.getElementById('game-subtitle').textContent = globalData.juego.subtitulo;
-        document.getElementById('game-version').textContent = globalData.juego.version;
-        document.getElementById('game-size').textContent = globalData.juego.tamano;
-        document.getElementById('game-android').textContent = globalData.juego.androidMinimo;
-        document.getElementById('btn-download').href = globalData.juego.apkUrl;
-        document.getElementById('btn-youtube').href = globalData.juego.youtubeUrl;
-        document.getElementById('yt-embed').src = getYoutubeEmbed(globalData.juego.trailerUrl || globalData.juego.youtubeUrl);
-
-        if (globalData.juego.estadioBg) {
-          document.getElementById('hero-stadium').style.backgroundImage = `url('${globalData.juego.estadioBg}?t=${Date.now()}')`;
-        }
-
-        renderJugadores();
-        renderBarraLicencias();
-        renderGaleria();
-        renderFiltros();
-        renderClubes();
-        renderChangelog();
+        renderAll();
       } catch (err) {
         console.error('Error cargando datos:', err);
       }
     }
 
-    function renderJugadores() {
+    function renderAll() {
+      const j = globalData.juego;
+      document.getElementById('game-title').textContent = j.titulo;
+      document.getElementById('game-subtitle').textContent = (currentLang === 'en' && j.subtituloEn) ? j.subtituloEn : j.subtitulo;
+      document.getElementById('game-version').textContent = j.version;
+      document.getElementById('game-size').textContent = j.tamano;
+      document.getElementById('game-android').textContent = j.androidMinimo;
+      document.getElementById('btn-download').href = j.apkUrl;
+      document.getElementById('btn-youtube').href = j.youtubeUrl;
+
+      const stageBox = document.getElementById('hero-stage-box');
+      const bgFile = j.estadioBg ? j.estadioBg : 'estadio-bg.png';
+      stageBox.style.backgroundImage = `url('${bgFile}?t=${Date.now()}')`;
+
+      if (j.trailerEmbed) {
+        document.getElementById('yt-embed').src = j.trailerEmbed;
+        document.getElementById('trailer').style.display = 'block';
+      } else {
+        document.getElementById('trailer').style.display = 'none';
+      }
+
+      // Render Top 3 Jugadores + Etiquetas alineadas
       const stage = document.getElementById('players-stage');
-      const kitsBar = document.getElementById('kits-bar');
+      const tagsRow = document.getElementById('kit-tags-row');
       stage.innerHTML = '';
-      kitsBar.innerHTML = '';
+      tagsRow.innerHTML = '';
       const dest = globalData.destacados || [];
       dest.forEach((p, idx) => {
         const slot = document.createElement('div');
-        slot.className = 'player-slot ' + (idx === 1 ? 'center' : 'side');
+        const cls = idx === 1 ? 'center' : (idx === 0 ? 'side-left' : 'side-right');
+        slot.className = `player-slot ${cls}`;
         slot.innerHTML = `<img src="${p.imagen}?t=${Date.now()}" alt="${p.club}" onerror="this.src='escudo-generico.svg'">`;
         stage.appendChild(slot);
 
         const tag = document.createElement('div');
         tag.className = 'kit-tag';
         tag.textContent = p.club;
-        kitsBar.appendChild(tag);
+        tagsRow.appendChild(tag);
       });
-    }
 
-    function renderBarraLicencias() {
-      const total = globalData.clubes.length;
-      const licenciados = globalData.clubes.filter(c => c.licenciado);
-      const pct = total > 0 ? Math.round((licenciados.length / total) * 100) : 0;
+      // Barra de Licencias
+      const clubes = globalData.clubes || [];
+      const licenciados = clubes.filter(c => c.licenciado);
+      document.getElementById('lic-counter').textContent = `${licenciados.length} / ${clubes.length}`;
+      const pct = clubes.length > 0 ? (licenciados.length / clubes.length) * 100 : 0;
+      document.getElementById('lic-bar').style.width = pct + '%';
 
-      document.getElementById('lic-counter').textContent = `${licenciados.length} / ${total}`;
-      document.getElementById('lic-bar').style.width = `${pct}%`;
-
-      const bar = document.getElementById('licensed-logos');
-      bar.innerHTML = '';
+      const logosBox = document.getElementById('official-logos');
+      logosBox.innerHTML = '';
       if (licenciados.length === 0) {
-        bar.innerHTML = `<span style="color:var(--text-muted); font-size:0.85rem;">${i18n[currentLang].no_lic_yet}</span>`;
-        return;
+        logosBox.innerHTML = `<span class="no-licenses-text">${dict[currentLang].no_lic_yet}</span>`;
+      } else {
+        licenciados.forEach(c => {
+          const img = document.createElement('img');
+          img.src = `${c.escudo}?t=${Date.now()}`;
+          img.title = c.nombre;
+          img.alt = c.nombre;
+          logosBox.appendChild(img);
+        });
       }
-      licenciados.forEach(c => {
-        const img = document.createElement('img');
-        img.src = `${c.escudo}?t=${Date.now()}`;
-        img.title = c.nombre;
-        img.alt = c.nombre;
-        bar.appendChild(img);
-      });
-    }
 
-    function renderGaleria() {
-      const cont = document.getElementById('gallery-container');
-      cont.innerHTML = '';
+      // Galería
+      const galCont = document.getElementById('gallery-container');
+      galCont.innerHTML = '';
       (globalData.capturas || []).forEach(cap => {
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        item.onclick = () => {
-          document.getElementById('lightbox-img').src = `${cap.imagen}?t=${Date.now()}`;
-          document.getElementById('lightbox').classList.add('active');
-        };
+        item.onclick = () => openLightbox(`${cap.imagen}?t=${Date.now()}`);
         item.innerHTML = `
           <img src="${cap.imagen}?t=${Date.now()}" alt="${cap.titulo}" onerror="this.src='escudo-generico.svg'">
           <div class="gallery-caption">${cap.titulo}</div>
         `;
-        cont.appendChild(item);
+        galCont.appendChild(item);
       });
-    }
 
-    function renderFiltros() {
-      const bar = document.getElementById('filter-bar');
-      const paises = [...new Set(globalData.clubes.map(c => c.pais))];
-      bar.innerHTML = '';
-
-      const crearBoton = (label, val) => {
+      // Filtros de Clubes
+      const countries = ['ALL', 'LIC', ...new Set(clubes.map(c => c.pais))];
+      const fBar = document.getElementById('filter-bar');
+      fBar.innerHTML = '';
+      countries.forEach(f => {
         const btn = document.createElement('button');
-        btn.className = 'filter-btn' + (currentFilter === val ? ' active' : '');
-        btn.textContent = label;
-        btn.onclick = () => { currentFilter = val; renderFiltros(); renderClubes(); };
-        bar.appendChild(btn);
-      };
-
-      crearBoton(`${i18n[currentLang].filter_all} (${globalData.clubes.length})`, 'ALL');
-      crearBoton(i18n[currentLang].filter_lic, 'LIC');
-      paises.forEach(p => crearBoton(p, p));
-    }
-
-    function renderClubes() {
-      const container = document.getElementById('clubs-container');
-      container.innerHTML = '';
-
-      const filtrados = globalData.clubes.filter(c => {
-        if (currentFilter === 'ALL') return true;
-        if (currentFilter === 'LIC') return c.licenciado;
-        return c.pais === currentFilter;
+        btn.className = `filter-btn ${activeFilter === f ? 'active' : ''}`;
+        btn.textContent = f === 'ALL' ? dict[currentLang].filter_all : (f === 'LIC' ? dict[currentLang].filter_lic : f);
+        btn.onclick = () => { activeFilter = f; renderAll(); };
+        fBar.appendChild(btn);
       });
 
-      filtrados.forEach(club => {
+      // Grid de Clubes
+      const cCont = document.getElementById('clubs-container');
+      cCont.innerHTML = '';
+      const filtered = clubes.filter(c => {
+        if (activeFilter === 'ALL') return true;
+        if (activeFilter === 'LIC') return c.licenciado;
+        return c.pais === activeFilter;
+      });
+      filtered.forEach(club => {
         const card = document.createElement('div');
         card.className = 'club-card';
         const pillClass = club.licenciado ? 'status-official' : 'status-pending';
-        const statusText = club.licenciado ? i18n[currentLang].status_lic : i18n[currentLang].status_pen;
-        
+        const statusTxt = club.licenciado ? dict[currentLang].status_lic : dict[currentLang].status_pen;
         card.innerHTML = `
           <img src="${club.escudo}?t=${Date.now()}" alt="${club.nombre}" onerror="this.src='escudo-generico.svg'">
           <h4>${club.nombre}</h4>
           <div class="club-country">${club.pais}</div>
-          <span class="status-pill ${pillClass}">${statusText}</span>
+          <span class="status-pill ${pillClass}">${statusTxt}</span>
         `;
-        container.appendChild(card);
+        cCont.appendChild(card);
       });
-    }
 
-    function renderChangelog() {
-      const cont = document.getElementById('changelog-container');
-      cont.innerHTML = '';
-      (globalData.changelog || []).forEach(log => {
+      // Changelog
+      const logCont = document.getElementById('changelog-container');
+      logCont.innerHTML = '';
+      (globalData.changelog || []).forEach(item => {
         const card = document.createElement('div');
         card.className = 'log-card';
-        const items = (log.cambios || []).map(txt => `<li>${txt}</li>`).join('');
+        const lis = (item.cambios || []).map(txt => `<li>${txt}</li>`).join('');
         card.innerHTML = `
           <div class="log-header">
-            <span class="log-version">${log.version}</span>
-            <span class="log-date">${log.fecha}</span>
+            <span class="log-ver">${item.version}</span>
+            <span class="log-date">${item.fecha}</span>
           </div>
-          <ul>${items}</ul>
+          <ul>${lis}</ul>
         `;
-        cont.appendChild(card);
+        logCont.appendChild(card);
       });
     }
 
