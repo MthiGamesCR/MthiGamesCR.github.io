@@ -69,8 +69,8 @@
       "id": "bohemian",
       "nombre": "Bohemian FC",
       "pais": "Irlanda",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
+      "estado": "Club Oficial Licenciado",
+      "licenciado": true,
       "escudo": "escudo-generico.svg"
     }
   ]
