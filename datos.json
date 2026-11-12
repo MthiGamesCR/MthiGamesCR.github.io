@@ -8,7 +8,10 @@
     "apkUrl": "https://github.com",
     "youtubeUrl": "https://youtube.com",
     "trailerUrl": "https://youtube.com",
-    "estadioBg": "estadio-bg.jpg"
+    "estadioBg": "estadio-bg.jpg",
+    "youtubeVideo": "",
+    "fase": "Fase Alpha — Desarrollo Activo",
+    "logoUrl": "logo-eleven.png"
   },
   "destacados": [
     {
