@@ -1,0 +1,77 @@
+{
+  "juego": {
+    "titulo": "PROYECTO FC MOBILE CR",
+    "subtitulo": "Fútbol competitivo para Android. Sin compras que den ventaja (Zero Pay-to-Win), modo carrera completo, duelos multijugador y eventos semanales.",
+    "version": "v0.1.0 Alpha",
+    "tamano": "145 MB",
+    "androidMinimo": "Android 8.0+",
+    "apkUrl": "https://github.com",
+    "youtubeUrl": "https://youtube.com"
+  },
+  "clubes": [
+    {
+      "id": "unionistas",
+      "nombre": "Unionistas de Salamanca CF",
+      "pais": "España",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "ourense",
+      "nombre": "UD Ourense",
+      "pais": "España",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "socios",
+      "nombre": "Atlético Club de Socios",
+      "pais": "España",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "herediano",
+      "nombre": "Club Sport Herediano",
+      "pais": "Costa Rica",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "carmelita",
+      "nombre": "AD Carmelita",
+      "pais": "Costa Rica",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "fcunited",
+      "nombre": "FC United of Manchester",
+      "pais": "Inglaterra",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "bury",
+      "nombre": "Bury FC",
+      "pais": "Inglaterra",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "bohemian",
+      "nombre": "Bohemian FC",
+      "pais": "Irlanda",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    }
+  ]
+}
