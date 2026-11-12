@@ -7,38 +7,54 @@
   <style>
     :root {
       --bg: #060913; --card: #0f1626; --border: #1e293b;
-      --accent: #10b981; --text: #f8fafc; --muted: #94a3b8;
+      --accent: #10b981; --danger: #ef4444; --text: #f8fafc; --muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background: var(--bg); color: var(--text); padding: 2rem 5%; max-width: 1000px; margin: 0 auto; }
+    body { background: var(--bg); color: var(--text); padding: 2rem 5%; max-width: 1080px; margin: 0 auto; }
     h1 { font-size: 1.8rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 10px; }
     .sub { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
     .panel { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
-    .panel h2 { font-size: 1.15rem; margin-bottom: 1rem; color: var(--accent); }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px; }
+    .panel h2 { font-size: 1.15rem; color: var(--accent); }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-    label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
-    input[type="text"], input[type="password"], textarea {
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+    input[type="text"], input[type="password"], textarea, select {
       width: 100%; background: #060913; border: 1px solid var(--border); color: var(--text);
-      padding: 10px 12px; border-radius: 6px; font-size: 0.95rem; margin-bottom: 0.8rem;
+      padding: 9px 11px; border-radius: 6px; font-size: 0.92rem; margin-bottom: 0.6rem;
     }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--accent); }
+    
+    .top-slot-card {
+      background: #060913; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center;
+    }
+    .top-slot-card img { width: 110px; height: 140px; object-fit: contain; margin-bottom: 0.8rem; background: #0f1626; border-radius: 8px; padding: 6px; }
+
     .club-row {
-      display: grid; grid-template-columns: 60px 1.2fr 1fr 1fr; gap: 1rem; align-items: center;
-      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 56px 1.2fr 0.9fr 0.9fr 1.1fr 40px; gap: 0.8rem; align-items: center;
+      padding: 0.9rem 0; border-bottom: 1px solid var(--border);
     }
     .club-row:last-child { border-bottom: none; }
-    .club-row img { width: 52px; height: 52px; object-fit: contain; background: #060913; border-radius: 8px; padding: 4px; border: 1px solid var(--border); }
+    .club-row img { width: 48px; height: 48px; object-fit: contain; background: #060913; border-radius: 8px; padding: 4px; border: 1px solid var(--border); }
+    
     .btn {
       background: var(--accent); color: #022c22; font-weight: 800; border: none;
       padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 1rem;
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
     }
     .btn:hover { opacity: 0.9; }
     .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-small { padding: 8px 14px; font-size: 0.88rem; }
+    .btn-del {
+      background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3);
+      width: 36px; height: 36px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .btn-del:hover { background: var(--danger); color: #fff; }
+
     .status-msg { margin-top: 1rem; padding: 12px; border-radius: 8px; font-weight: 600; display: none; }
     .status-ok { background: rgba(16,185,129,0.15); color: var(--accent); border: 1px solid var(--accent); display: block; }
     .status-err { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid #f87171; display: block; }
-    @media (max-width: 700px) { .club-row { grid-template-columns: 1fr; } }
+    @media (max-width: 850px) { .club-row { grid-template-columns: 1fr; border: 1px solid var(--border); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; } }
   </style>
 </head>
 <body>
@@ -47,13 +63,12 @@
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
     Panel de Control Privado
   </h1>
-  <p class="sub">Conecta tu Token de GitHub para actualizar escudos, licencias y enlaces de descarga en tiempo real.</p>
+  <p class="sub">Gestiona los jugadores de portada, agrega o elimina clubes ilimitados y publica cambios al instante.</p>
 
   <div class="panel">
     <h2>1. Autenticación de Seguridad</h2>
-    <label>GitHub Personal Access Token (permiso: repo)</label>
+    <label>GitHub Personal Access Token (ghp_... con permiso repo)</label>
     <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-    <small style="color: var(--muted);">Tu token se guarda únicamente en este navegador y nunca se publica.</small>
   </div>
 
   <div class="panel">
@@ -81,7 +96,19 @@
   </div>
 
   <div class="panel">
-    <h2>3. Gestión de Clubes y Escudos</h2>
+    <h2>3. Top 3 Jugadores de Portada (Equipaciones Principales)</h2>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:1rem;">Sube imágenes PNG sin fondo de tus jugadores genéricos vistiendo los uniformes de los 3 clubes más importantes.</p>
+    <div id="top-players-editor" class="grid-3"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <h2>4. Gestor Ilimitado de Clubes (<span id="club-count">0</span> equipos)</h2>
+      <button type="button" class="btn btn-small" onclick="agregarClub()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Agregar Nuevo Club
+      </button>
+    </div>
     <div id="clubs-editor">Cargando clubes...</div>
   </div>
 
@@ -101,12 +128,20 @@
 
     async function iniciar() {
       try {
-        const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/datos.json?t=' + Date.now());
+        const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/datos.json?t=${Date.now()}`);
         const fileInfo = await res.json();
         const binString = atob(fileInfo.content);
         const bytes = Uint8Array.from(binString, (m) => m.codePointAt(0));
         const decoded = new TextDecoder().decode(bytes);
         appData = JSON.parse(decoded);
+
+        if (!appData.topJugadores) {
+          appData.topJugadores = [
+            { posicion: "Izquierda", clubNombre: "Uniforme Genérico", imagen: "jugador-generico.svg" },
+            { posicion: "Centro (Principal)", clubNombre: "Uniforme Genérico", imagen: "jugador-generico.svg" },
+            { posicion: "Derecha", clubNombre: "Uniforme Genérico", imagen: "jugador-generico.svg" }
+          ];
+        }
 
         document.getElementById('edit-titulo').value = appData.juego.titulo;
         document.getElementById('edit-version').value = appData.juego.version;
@@ -114,35 +149,94 @@
         document.getElementById('edit-apk').value = appData.juego.apkUrl;
         document.getElementById('edit-subtitulo').value = appData.juego.subtitulo;
 
+        renderTopPlayers();
         renderClubes();
       } catch (e) {
-        document.getElementById('clubs-editor').textContent = 'Error al cargar datos.json. Verifica que el archivo exista en el repositorio.';
+        document.getElementById('clubs-editor').textContent = 'Error al cargar datos.json.';
       }
+    }
+
+    function renderTopPlayers() {
+      const cont = document.getElementById('top-players-editor');
+      cont.innerHTML = '';
+      appData.topJugadores.forEach((slot, idx) => {
+        const div = document.createElement('div');
+        div.className = 'top-slot-card';
+        div.innerHTML = `
+          <div style="font-weight:700; font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Posición: ${slot.posicion}</div>
+          <img src="${slot.imagen}?t=${Date.now()}" onerror="this.src='jugador-generico.svg'">
+          <label style="text-align:left;">Nombre del Club del Uniforme</label>
+          <input type="text" id="top-club-${idx}" value="${slot.clubNombre}">
+          <label style="text-align:left;">Subir Render PNG (Sin fondo)</label>
+          <input type="file" id="top-file-${idx}" accept="image/*" style="font-size:0.8rem; color:var(--muted);">
+        `;
+        cont.appendChild(div);
+      });
+    }
+
+    function sincronizarCamposClubes() {
+      appData.clubes.forEach((club, index) => {
+        const nomEl = document.getElementById(`name-${index}`);
+        const paisEl = document.getElementById(`pais-${index}`);
+        const licEl = document.getElementById(`lic-${index}`);
+        if (nomEl) club.nombre = nomEl.value;
+        if (paisEl) club.pais = paisEl.value;
+        if (licEl) club.licenciado = licEl.value === 'true';
+      });
+    }
+
+    function agregarClub() {
+      sincronizarCamposClubes();
+      const nuevoId = 'club_' + Date.now();
+      appData.clubes.unshift({
+        id: nuevoId,
+        nombre: 'Nuevo Club FC',
+        pais: 'Costa Rica',
+        licenciado: false,
+        escudo: 'escudo-generico.svg'
+      });
+      renderClubes();
+    }
+
+    function eliminarClub(index) {
+      sincronizarCamposClubes();
+      appData.clubes.splice(index, 1);
+      renderClubes();
     }
 
     function renderClubes() {
       const cont = document.getElementById('clubs-editor');
+      document.getElementById('club-count').textContent = appData.clubes.length;
       cont.innerHTML = '';
+
       appData.clubes.forEach((club, index) => {
         const row = document.createElement('div');
         row.className = 'club-row';
-        row.innerHTML = 
-          '<img id="preview-' + index + '" src="' + club.escudo + '?t=' + Date.now() + '" onerror="this.src=\'escudo-generico.svg\'">' +
-          '<div>' +
-            '<strong>' + club.nombre + '</strong><br>' +
-            '<small style="color:var(--muted)">' + club.pais + '</small>' +
-          '</div>' +
-          '<div>' +
-            '<label>Estado de Licencia</label>' +
-            '<select id="lic-' + index + '" style="width:100%; padding:8px; background:#060913; color:#fff; border:1px solid #1e293b; border-radius:6px;">' +
-              '<option value="false" ' + (!club.licenciado ? 'selected' : '') + '>Pendiente (Genérico)</option>' +
-              '<option value="true" ' + (club.licenciado ? 'selected' : '') + '>Club Oficial Licenciado</option>' +
-            '</select>' +
-          '</div>' +
-          '<div>' +
-            '<label>Subir Escudo Oficial (PNG/SVG)</label>' +
-            '<input type="file" id="file-' + index + '" accept="image/*" style="font-size:0.8rem; color:var(--muted);">' +
-          '</div>';
+        row.innerHTML = `
+          <img src="${club.escudo}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
+          <div>
+            <label>Nombre del Club</label>
+            <input type="text" id="name-${index}" value="${club.nombre}">
+          </div>
+          <div>
+            <label>País</label>
+            <input type="text" id="pais-${index}" value="${club.pais}">
+          </div>
+          <div>
+            <label>Estado</label>
+            <select id="lic-${index}">
+              <option value="false" ${!club.licenciado ? 'selected' : ''}>En gestión (Genérico)</option>
+              <option value="true" ${club.licenciado ? 'selected' : ''}>Oficial Licenciado</option>
+            </select>
+          </div>
+          <div>
+            <label>Escudo (PNG/SVG)</label>
+            <input type="file" id="file-${index}" accept="image/*" style="font-size:0.78rem; color:var(--muted);">
+          </div>
+          <button type="button" class="btn-del" title="Eliminar club" onclick="eliminarClub(${index})">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+        `;
         cont.appendChild(row);
       });
     }
@@ -164,21 +258,21 @@
 
     async function subirArchivoGitHub(path, base64Content, token, message) {
       let sha = null;
-      const check = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
-        headers: { Authorization: 'token ' + token }
+      const check = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+        headers: { Authorization: `token ${token}` }
       });
       if (check.ok) {
         const existing = await check.json();
         sha = existing.sha;
       }
 
-      const body = { message: message, content: base64Content };
+      const body = { message, content: base64Content };
       if (sha) body.sha = sha;
 
-      const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+      const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
         method: 'PUT',
         headers: {
-          Authorization: 'token ' + token,
+          Authorization: `token ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
@@ -193,14 +287,14 @@
 
       if (!token) {
         fb.className = 'status-msg status-err';
-        fb.textContent = 'Debes ingresar tu Token de GitHub para guardar cambios.';
+        fb.textContent = 'Debes ingresar tu Token de GitHub (ghp_...) para guardar cambios.';
         return;
       }
 
       localStorage.setItem('mthi_gh_token', token);
       btn.disabled = true;
       fb.className = 'status-msg status-ok';
-      fb.textContent = 'Subiendo imágenes y actualizando la web oficial...';
+      fb.textContent = 'Subiendo imágenes y publicando cambios en la web...';
 
       try {
         appData.juego.titulo = document.getElementById('edit-titulo').value;
@@ -209,31 +303,43 @@
         appData.juego.apkUrl = document.getElementById('edit-apk').value;
         appData.juego.subtitulo = document.getElementById('edit-subtitulo').value;
 
-        for (let i = 0; i < appData.clubes.length; i++) {
-          const isLic = document.getElementById('lic-' + i).value === 'true';
-          appData.clubes[i].licenciado = isLic;
-          appData.clubes[i].estado = isLic ? 'Club Oficial Licenciado' : 'Pendiente de licencia';
+        // Guardar Top 3 Jugadores
+        for (let j = 0; j < 3; j++) {
+          appData.topJugadores[j].clubNombre = document.getElementById(`top-club-${j}`).value;
+          const topFile = document.getElementById(`top-file-${j}`);
+          if (topFile.files.length > 0) {
+            const file = topFile.files[0];
+            const ext = file.name.split('.').pop();
+            const fileName = `portada/jugador_${j}.${ext}`;
+            const b64 = await fileToBase64(file);
+            await subirArchivoGitHub(fileName, b64, token, `Actualizar jugador portada ${j + 1}`);
+            appData.topJugadores[j].imagen = fileName;
+          }
+        }
 
-          const fileInput = document.getElementById('file-' + i);
+        // Guardar Clubes
+        sincronizarCamposClubes();
+        for (let i = 0; i < appData.clubes.length; i++) {
+          const fileInput = document.getElementById(`file-${i}`);
           if (fileInput.files.length > 0) {
             const file = fileInput.files[0];
             const ext = file.name.split('.').pop();
-            const fileName = 'escudos/' + appData.clubes[i].id + '.' + ext;
+            const fileName = `escudos/${appData.clubes[i].id}.${ext}`;
             const b64 = await fileToBase64(file);
-            await subirArchivoGitHub(fileName, b64, token, 'Actualizar escudo de ' + appData.clubes[i].nombre);
+            await subirArchivoGitHub(fileName, b64, token, `Actualizar escudo de ${appData.clubes[i].nombre}`);
             appData.clubes[i].escudo = fileName;
           }
         }
 
         const jsonStr = JSON.stringify(appData, null, 2);
         const jsonBase64 = textToBase64(jsonStr);
-        await subirArchivoGitHub('datos.json', jsonBase64, token, 'Actualizar configuración web desde panel privado');
+        await subirArchivoGitHub('datos.json', jsonBase64, token, 'Actualizar configuración completa desde panel privado');
 
-        fb.textContent = 'Cambios publicados correctamente. La página pública se actualizará en unos segundos.';
+        fb.textContent = '¡Cambios publicados! Tu web oficial se actualizará en unos segundos.';
         setTimeout(() => location.reload(), 2000);
       } catch (err) {
         fb.className = 'status-msg status-err';
-        fb.textContent = 'Error: Verifica que tu Token de GitHub tenga permisos de repositorio (repo).';
+        fb.textContent = 'Error al publicar. Verifica tu Token de GitHub (ghp_...).';
       } finally {
         btn.disabled = false;
       }

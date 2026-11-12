@@ -8,36 +8,28 @@
     "apkUrl": "https://github.com/MthiGamesCR/MthiGamesCR.github.io/releases",
     "youtubeUrl": "https://www.youtube.com/@mthigamesCR"
   },
+  "topJugadores": [
+    {
+      "posicion": "Izquierda",
+      "clubNombre": "Uniforme Genérico",
+      "imagen": "jugador-generico.svg"
+    },
+    {
+      "posicion": "Centro (Principal)",
+      "clubNombre": "Uniforme Genérico",
+      "imagen": "jugador-generico.svg"
+    },
+    {
+      "posicion": "Derecha",
+      "clubNombre": "Uniforme Genérico",
+      "imagen": "jugador-generico.svg"
+    }
+  ],
   "clubes": [
-    {
-      "id": "unionistas",
-      "nombre": "Unionistas de Salamanca CF",
-      "pais": "España",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg"
-    },
-    {
-      "id": "ourense",
-      "nombre": "UD Ourense",
-      "pais": "España",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg"
-    },
-    {
-      "id": "socios",
-      "nombre": "Atlético Club de Socios",
-      "pais": "España",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg"
-    },
     {
       "id": "herediano",
       "nombre": "Club Sport Herediano",
       "pais": "Costa Rica",
-      "estado": "Pendiente de licencia",
       "licenciado": false,
       "escudo": "escudo-generico.svg"
     },
@@ -45,7 +37,90 @@
       "id": "carmelita",
       "nombre": "AD Carmelita",
       "pais": "Costa Rica",
-      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "uruguay",
+      "nombre": "CS Uruguay de Coronado",
+      "pais": "Costa Rica",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "aserri",
+      "nombre": "Aserrí FC",
+      "pais": "Costa Rica",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "unionistas",
+      "nombre": "Unionistas de Salamanca CF",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "murcia",
+      "nombre": "CAP Ciudad de Murcia",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "xerez",
+      "nombre": "Xerez Deportivo FC",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "ourense",
+      "nombre": "UD Ourense",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "ceares",
+      "nombre": "Unión Club Ceares",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "logrones",
+      "nombre": "SD Logroñés",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "socios",
+      "nombre": "Atlético Club de Socios",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "aviles",
+      "nombre": "Avilés Stadium CF",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "almeria",
+      "nombre": "Club Polideportivo Almería",
+      "pais": "España",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "tarraco",
+      "nombre": "Tarraco FC",
+      "pais": "España",
       "licenciado": false,
       "escudo": "escudo-generico.svg"
     },
@@ -53,7 +128,13 @@
       "id": "fcunited",
       "nombre": "FC United of Manchester",
       "pais": "Inglaterra",
-      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "chester",
+      "nombre": "Chester FC",
+      "pais": "Inglaterra",
       "licenciado": false,
       "escudo": "escudo-generico.svg"
     },
@@ -61,7 +142,20 @@
       "id": "bury",
       "nombre": "Bury FC",
       "pais": "Inglaterra",
-      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "enfield",
+      "nombre": "Enfield Town FC",
+      "pais": "Inglaterra",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "clapton",
+      "nombre": "Clapton Community FC",
+      "pais": "Inglaterra",
       "licenciado": false,
       "escudo": "escudo-generico.svg"
     },
@@ -69,8 +163,21 @@
       "id": "bohemian",
       "nombre": "Bohemian FC",
       "pais": "Irlanda",
-      "estado": "Club Oficial Licenciado",
-      "licenciado": true,
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "trebic",
+      "nombre": "HFK Třebíč",
+      "pais": "República Checa",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
+      "id": "claypole",
+      "nombre": "CA Claypole",
+      "pais": "Argentina",
+      "licenciado": false,
       "escudo": "escudo-generico.svg"
     }
   ]
