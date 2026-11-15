@@ -49,6 +49,14 @@
   ],
   "clubes": [
     {
+      "id": "club_1794700123693",
+      "nombre": "LioTiz FC",
+      "pais": "España",
+      "estado": "Pendiente de licencia",
+      "licenciado": false,
+      "escudo": "escudo-generico.svg"
+    },
+    {
       "id": "herediano",
       "nombre": "Club Sport Herediano",
       "pais": "Costa Rica",
@@ -59,14 +67,6 @@
     {
       "id": "carmelita",
       "nombre": "AD Carmelita",
-      "pais": "Costa Rica",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg"
-    },
-    {
-      "id": "uruguay",
-      "nombre": "CS Uruguay de Coronado",
       "pais": "Costa Rica",
       "estado": "Pendiente de licencia",
       "licenciado": false,
