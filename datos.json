@@ -22,7 +22,7 @@
     {
       "posicion": "Centro",
       "imagen": "jugador2.png",
-      "club": "Uniforme Genérico"
+      "club": "LioTiz FC"
     },
     {
       "posicion": "Derecha",
@@ -52,9 +52,9 @@
       "id": "club_1794700123693",
       "nombre": "LioTiz FC",
       "pais": "España",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "estado": "Club Oficial Licenciado",
+      "licenciado": true,
+      "escudo": "escudos/liotizfc.png"
     },
     {
       "id": "herediano",
