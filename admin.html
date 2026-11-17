@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Privado v5.0 | ELEVEN - MthiGamesCR</title>
+  <title>Panel Privado v6.0 | ELEVEN - MthiGamesCR</title>
   <style>
     :root {
       --bg: #060913; --card: #0f1626; --border: #1e293b;
@@ -28,7 +28,7 @@
     .preview-img { width: 85px; height: 85px; object-fit: contain; background: repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 50% / 14px 14px; border-radius: 8px; padding: 4px; border: 1px solid var(--border); margin-bottom: 0.8rem; }
     .logo-preview { width: 220px; height: 75px; object-fit: contain; background: repeating-conic-gradient(#1e293b 0% 25%, #0f172a 0% 50%) 50% / 14px 14px; border-radius: 8px; padding: 6px; border: 1px solid var(--border); margin-bottom: 0.8rem; }
     .club-row {
-      display: grid; grid-template-columns: 70px 1.2fr 0.9fr 1fr 1.2fr auto; gap: 0.8rem; align-items: center;
+      display: grid; grid-template-columns: 70px 1.1fr 0.8fr 1fr 0.95fr 1.1fr auto; gap: 0.8rem; align-items: center;
       padding: 1rem 0; border-bottom: 1px solid var(--border);
     }
     .club-row:last-child { border-bottom: none; }
@@ -55,9 +55,9 @@
 
   <h1>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-    Panel de Control Privado (v5.0)
+    Panel de Control Privado (v6.0)
   </h1>
-  <p class="sub">Gestiona el logotipo de ELEVEN, jugadores transparentes, fondo de estadio, descarga APK y clubes licenciados.</p>
+  <p class="sub">Gestiona el logotipo de ELEVEN, los 5 jugadores de portada, fondo de estadio, descarga APK, clubes (federados y creadores) y patrocinadores.</p>
 
   <div class="panel">
     <div class="panel-header">
@@ -128,8 +128,9 @@
 
   <div class="panel">
     <div class="panel-header">
-      <h2>3. Portada Top 3 Jugadores (PNG Transparente)</h2>
+      <h2>3. Portada: 5 Jugadores (PNG Transparente)</h2>
     </div>
+    <p class="sub" style="margin-bottom:1rem;">Ordenados de izquierda a derecha, en formación de "V" invertida. Un espacio sin imagen no se muestra en la web.</p>
     <div id="destacados-editor" class="grid-3"></div>
   </div>
 
@@ -157,6 +158,14 @@
     <div id="clubs-editor">Cargando clubes...</div>
   </div>
 
+  <div class="panel">
+    <div class="panel-header">
+      <h2>7. Patrocinadores y Colaboradores</h2>
+      <button type="button" class="btn btn-sm" onclick="agregarPatrocinador()">+ Agregar Patrocinador</button>
+    </div>
+    <div id="sponsors-editor" class="grid-2"></div>
+  </div>
+
   <button id="btn-save" class="btn" onclick="guardarCambios()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
     Publicar Todos los Cambios
@@ -169,6 +178,36 @@
     const REPO = 'MthiGamesCR.github.io';
     let appData = null;
 
+    const POSICIONES = ['Extremo Izquierdo', 'Interior Izquierdo', 'Protagonista Central', 'Interior Derecho', 'Extremo Derecho'];
+
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function youtubeEmbedFromUrl(u) {
+      const m = String(u || '').match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+      return m ? 'https://www.youtube.com/embed/' + m[1] : '';
+    }
+
+    // Pasa los datos antiguos (3 jugadores) a los 5 espacios de la portada
+    function normalizarDestacados() {
+      const old = Array.isArray(appData.destacados) ? appData.destacados : [];
+      const base = POSICIONES.map(pos => ({ posicion: pos, imagen: '', club: 'Uniforme Genérico' }));
+      const copiar = (slot, d) => {
+        if (!d) return;
+        base[slot].imagen = d.imagen || '';
+        base[slot].club = d.club || 'Uniforme Genérico';
+      };
+      if (old.length >= 5) {
+        for (let i = 0; i < 5; i++) copiar(i, old[i]);
+      } else if (old.length > 0) {
+        [0, 2, 4].forEach((slot, k) => copiar(slot, old[k]));
+      } else {
+        copiar(0, { imagen: 'jugador1.png' });
+        copiar(2, { imagen: 'jugador2.png' });
+        copiar(4, { imagen: 'jugador3.png' });
+      }
+      appData.destacados = base;
+    }
+
     document.getElementById('gh-token').value = localStorage.getItem('mthi_gh_token') || '';
 
     async function iniciar() {
@@ -180,13 +219,10 @@
         const decoded = new TextDecoder().decode(bytes);
         appData = JSON.parse(decoded);
 
-        if (!appData.destacados) appData.destacados = [
-          { posicion: 'Izquierda', imagen: 'jugador1.png', club: 'Uniforme Genérico' },
-          { posicion: 'Centro', imagen: 'jugador2.png', club: 'Uniforme Genérico' },
-          { posicion: 'Derecha', imagen: 'jugador3.png', club: 'Uniforme Genérico' }
-        ];
+        normalizarDestacados();
         if (!appData.capturas) appData.capturas = [];
         if (!appData.changelog) appData.changelog = [];
+        if (!appData.patrocinadores) appData.patrocinadores = [];
 
         document.getElementById('edit-titulo').value = appData.juego.titulo || 'ELEVEN';
         document.getElementById('edit-version').value = appData.juego.version || '';
@@ -202,6 +238,7 @@
         renderCapturas();
         renderChangelog();
         renderClubes();
+        renderPatrocinadores();
       } catch (e) {
         document.getElementById('clubs-editor').textContent = 'Error cargando datos.json.';
       }
@@ -213,11 +250,12 @@
       appData.destacados.forEach((dest, i) => {
         const div = document.createElement('div');
         div.className = 'item-box';
+        const preview = dest.imagen ? `${esc(dest.imagen)}?t=${Date.now()}` : 'escudo-generico.svg';
         div.innerHTML = `
-          <label>Jugador ${i + 1} (${dest.posicion})</label>
-          <img class="preview-img" src="${dest.imagen}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
+          <label>Jugador ${i + 1} · ${esc(dest.posicion)}</label>
+          <img class="preview-img" src="${preview}" onerror="this.src='escudo-generico.svg'">
           <label>Etiqueta del Uniforme / Club</label>
-          <input type="text" id="dest-club-${i}" value="${dest.club}">
+          <input type="text" id="dest-club-${i}" value="${esc(dest.club)}">
           <label>Subir Imagen del Jugador</label>
           <input type="file" id="dest-file-${i}" accept="image/*" style="font-size:0.8rem; color:var(--muted);">
           <label class="chk-wrap">
@@ -305,11 +343,18 @@
           <img src="${club.escudo}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
           <div>
             <label>Nombre del Club</label>
-            <input type="text" id="name-${index}" value="${club.nombre}">
+            <input type="text" id="name-${index}" value="${esc(club.nombre)}">
           </div>
           <div>
             <label>País</label>
-            <input type="text" id="country-${index}" value="${club.pais}">
+            <input type="text" id="country-${index}" value="${esc(club.pais)}">
+          </div>
+          <div>
+            <label>Tipo de Club</label>
+            <select id="type-${index}">
+              <option value="federado" ${club.tipo !== 'creador' ? 'selected' : ''}>Club Federado</option>
+              <option value="creador" ${club.tipo === 'creador' ? 'selected' : ''}>Club Creador / Comunidad</option>
+            </select>
           </div>
           <div>
             <label>Estado</label>
@@ -331,6 +376,48 @@
         `;
         cont.appendChild(row);
       });
+    }
+
+    function renderPatrocinadores() {
+      const cont = document.getElementById('sponsors-editor');
+      cont.innerHTML = '';
+      if (appData.patrocinadores.length === 0) {
+        cont.innerHTML = '<p style="color:var(--muted); font-size:0.9rem;">Aún no hay patrocinadores. Pulsa "+ Agregar Patrocinador".</p>';
+        return;
+      }
+      appData.patrocinadores.forEach((sp, i) => {
+        const div = document.createElement('div');
+        div.className = 'item-box';
+        div.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="font-size:0.9rem;">Patrocinador #${i + 1}</strong>
+            <button type="button" class="btn-danger" onclick="eliminarPatrocinador(${i})">Borrar</button>
+          </div>
+          <img class="logo-preview" src="${esc(sp.logo || 'escudo-generico.svg')}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
+          <label>Nombre del Patrocinador / Colaborador</label>
+          <input type="text" id="sp-name-${i}" value="${esc(sp.nombre)}">
+          <label>Enlace (web, canal o servidor)</label>
+          <input type="text" id="sp-url-${i}" value="${esc(sp.url)}" placeholder="https://...">
+          <label>Logotipo</label>
+          <input type="file" id="sp-file-${i}" accept="image/*" style="font-size:0.8rem; color:var(--muted);">
+          <label class="chk-wrap">
+            <input type="checkbox" id="sp-rm-${i}"> Quitar fondo automáticamente
+          </label>
+        `;
+        cont.appendChild(div);
+      });
+    }
+
+    function agregarPatrocinador() {
+      sincronizarMemoria();
+      appData.patrocinadores.push({ nombre: 'Nuevo patrocinador', logo: 'escudo-generico.svg', url: '' });
+      renderPatrocinadores();
+    }
+
+    function eliminarPatrocinador(i) {
+      sincronizarMemoria();
+      appData.patrocinadores.splice(i, 1);
+      renderPatrocinadores();
     }
 
     function sincronizarMemoria() {
@@ -355,12 +442,20 @@
         const n = document.getElementById(`name-${i}`);
         const p = document.getElementById(`country-${i}`);
         const l = document.getElementById(`lic-${i}`);
+        const tp = document.getElementById(`type-${i}`);
         if (n) c.nombre = n.value;
         if (p) c.pais = p.value;
+        if (tp) c.tipo = tp.value;
         if (l) {
           c.licenciado = l.value === 'true';
           c.estado = c.licenciado ? 'Club Oficial Licenciado' : 'Pendiente de licencia';
         }
+      });
+      (appData.patrocinadores || []).forEach((s, i) => {
+        const n = document.getElementById(`sp-name-${i}`);
+        const u = document.getElementById(`sp-url-${i}`);
+        if (n) s.nombre = n.value;
+        if (u) s.url = u.value.trim();
       });
     }
 
@@ -372,6 +467,7 @@
         pais: 'Costa Rica',
         estado: 'Pendiente de licencia',
         licenciado: false,
+        tipo: 'federado',
         escudo: 'escudo-generico.svg'
       });
       renderClubes();
@@ -477,6 +573,8 @@
         appData.juego.tamano = document.getElementById('edit-tamano').value;
         appData.juego.apkUrl = document.getElementById('edit-apk').value;
         appData.juego.youtubeVideo = document.getElementById('edit-yt-video').value;
+        const embed = youtubeEmbedFromUrl(appData.juego.youtubeVideo);
+        if (embed) appData.juego.trailerEmbed = embed;
         appData.juego.fase = document.getElementById('edit-fase').value;
         appData.juego.subtitulo = document.getElementById('edit-subtitulo').value;
 
@@ -502,7 +600,7 @@
           if (fileInput && fileInput.files.length > 0) {
             const rmBg = document.getElementById(`dest-rm-${i}`).checked;
             const proc = await procesarImagen(fileInput.files[0], rmBg);
-            const path = `jugador${i + 1}.${proc.ext}`;
+            const path = `portada-jugador-${i + 1}.${proc.ext}`;
             await subirArchivoGitHub(path, proc.b64, token, `Actualizar jugador portada ${i + 1}`);
             appData.destacados[i].imagen = path;
           }
@@ -527,6 +625,17 @@
             const path = `escudos/${cleanId}.${proc.ext}`;
             await subirArchivoGitHub(path, proc.b64, token, `Actualizar escudo ${appData.clubes[i].nombre}`);
             appData.clubes[i].escudo = path;
+          }
+        }
+
+        for (let i = 0; i < appData.patrocinadores.length; i++) {
+          const fileInput = document.getElementById(`sp-file-${i}`);
+          if (fileInput && fileInput.files.length > 0) {
+            const rmBg = document.getElementById(`sp-rm-${i}`).checked;
+            const proc = await procesarImagen(fileInput.files[0], rmBg);
+            const path = `patrocinadores/sp_${i + 1}_${Date.now()}.${proc.ext}`;
+            await subirArchivoGitHub(path, proc.b64, token, `Subir logo patrocinador ${appData.patrocinadores[i].nombre}`);
+            appData.patrocinadores[i].logo = path;
           }
         }
 

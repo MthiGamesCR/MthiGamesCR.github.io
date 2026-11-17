@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ELEVEN | MthiGamesCR - Descarga Oficial</title>
   <link id="favicon" rel="icon" href="escudo-generico.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
       --bg-dark: #060913;
@@ -18,6 +19,7 @@
       --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
     body { background-color: var(--bg-dark); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
     
     /* Navegación */
@@ -47,7 +49,7 @@
     .hero {
       padding: 4rem 6% 3rem;
       background: radial-gradient(circle at 75% 30%, rgba(16, 185, 129, 0.14), transparent 55%);
-      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; align-items: center;
+      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2.5rem; align-items: center;
       max-width: 1320px; margin: 0 auto;
     }
     .badge {
@@ -105,7 +107,7 @@
     .players-stage {
       position: relative;
       width: 100%;
-      height: 335px;
+      height: calc(345px * var(--k, 1));
       z-index: 2;
     }
     .player-card {
@@ -117,39 +119,44 @@
       pointer-events: none;
     }
     .player-card img {
-      height: 265px;
+      height: var(--ph);
       width: auto;
       max-width: none;
       object-fit: contain;
       filter: drop-shadow(0 10px 22px rgba(0,0,0,0.85));
     }
-    .player-card.left { left: -8%; z-index: 2; }
-    .player-card.center { left: 50%; transform: translateX(-50%); z-index: 4; }
-    .player-card.center img { height: 300px; }
-    .player-card.right { right: -8%; z-index: 2; }
+    .player-card.is-empty { display: none; }
+    /* Formación en "V" invertida: el protagonista al centro, más alto; los extremos, más bajos */
+    .pc-0 { left: -2%;  z-index: 1; --ph: calc(205px * var(--k, 1)); }
+    .pc-1 { left: 15%;  z-index: 2; --ph: calc(258px * var(--k, 1)); }
+    .pc-2 { left: 50%;  z-index: 4; --ph: calc(310px * var(--k, 1)); transform: translateX(-50%); }
+    .pc-3 { right: 15%; z-index: 2; --ph: calc(258px * var(--k, 1)); }
+    .pc-4 { right: -2%; z-index: 1; --ph: calc(205px * var(--k, 1)); }
 
     .kits-bar {
       position: relative;
       z-index: 5;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      display: flex;
+      gap: 6px;
       padding: 12px 16px 16px;
     }
     .kit-pill {
+      flex: 1 1 0;
+      min-width: 0;
       background: rgba(15, 22, 38, 0.85);
       border: 1px solid rgba(16, 185, 129, 0.35);
       color: var(--accent);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-align: center;
-      padding: 6px 8px;
+      padding: 6px 6px;
       border-radius: 6px;
       backdrop-filter: blur(6px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    .kit-pill.is-empty { display: none; }
 
     /* Secciones generales */
     .section { max-width: 1320px; margin: 0 auto; padding: 3rem 6%; }
@@ -249,6 +256,137 @@
       color: var(--text-muted); font-size: 0.9rem; gap: 1rem;
     }
 
+    /* ===== Fluidez y acabado visual ===== */
+    .btn-primary, .btn-secondary, .btn-discord, .lang-btn, .filter-btn,
+    .feature-card, .club-card, .shot-card, .log-item, .contact-card,
+    .lic-badge-item, .sponsor-card, .faq-item, .convocatoria {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease,
+                  background-color 0.25s ease, color 0.25s ease;
+    }
+    .btn-primary:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.38); }
+    .btn-secondary:hover, .btn-discord:hover, .lang-btn:hover, .filter-btn:hover { transform: translateY(-2px); }
+    .feature-card:hover, .club-card:hover, .shot-card:hover, .log-item:hover,
+    .contact-card:hover, .lic-badge-item:hover, .sponsor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+    }
+
+    /* Aparición al hacer scroll */
+    .js .reveal { opacity: 0; }
+    .js .reveal.in {
+      opacity: 1;
+      animation: revealUp 0.65s cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+      animation-delay: var(--d, 0ms);
+    }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* Flotación sutil de los jugadores */
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-7px); }
+    }
+    .player-card img { animation: floatY 6s ease-in-out infinite; }
+    .pc-1 img { animation-delay: -1.4s; animation-duration: 6.6s; }
+    .pc-2 img { animation-delay: -2.8s; animation-duration: 5.4s; }
+    .pc-3 img { animation-delay: -4.2s; animation-duration: 6.9s; }
+    .pc-4 img { animation-delay: -0.7s; animation-duration: 6.2s; }
+
+    /* Botón Discord */
+    .btn-discord {
+      background: #5865F2; color: #fff; font-weight: 700; font-size: 1rem;
+      padding: 14px 24px; border-radius: 8px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 22px rgba(88, 101, 242, 0.3);
+    }
+    .btn-discord:hover { background: #4752c4; box-shadow: 0 12px 28px rgba(88, 101, 242, 0.45); }
+
+    /* Clubes Creadores */
+    .creator-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 4px;
+      color: #3b2a00; background: linear-gradient(135deg, #f8de7e, #d9a21b);
+      box-shadow: 0 2px 10px rgba(217, 162, 27, 0.28); letter-spacing: 0.3px;
+    }
+    .club-card.creator {
+      border-color: rgba(217, 162, 27, 0.5);
+      background: linear-gradient(180deg, rgba(217, 162, 27, 0.08), var(--bg-card) 55%);
+    }
+    .club-card.creator:hover { border-color: #d9a21b; }
+    .filter-btn.gold { color: #e9c25a; border-color: rgba(217, 162, 27, 0.45); }
+    .filter-btn.gold.active, .filter-btn.gold:hover {
+      background: rgba(217, 162, 27, 0.15); color: #f5d36b; border-color: #d9a21b;
+    }
+    .empty-note { grid-column: 1 / -1; color: var(--text-muted); font-size: 0.92rem; padding: 1rem 0; }
+
+    /* Convocatorias */
+    .convocatoria {
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      background: linear-gradient(120deg, rgba(88, 101, 242, 0.14), rgba(16, 185, 129, 0.10));
+      border: 1px solid rgba(88, 101, 242, 0.35); border-radius: 14px; padding: 1.8rem;
+    }
+    .conv-icon {
+      width: 52px; height: 52px; flex: none; border-radius: 12px;
+      background: rgba(88, 101, 242, 0.2); color: #a5b0ff;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .conv-body { flex: 1 1 320px; }
+    .conv-body h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .conv-body p { color: var(--text-muted); font-size: 0.95rem; max-width: 640px; }
+    .conv-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .conv-actions .btn-secondary, .conv-actions .btn-discord { font-size: 0.92rem; padding: 11px 18px; }
+
+    /* Patrocinadores */
+    .sponsors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem; }
+    .sponsor-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.3rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+      text-align: center; text-decoration: none; color: var(--text-main);
+    }
+    a.sponsor-card:hover { border-color: rgba(16, 185, 129, 0.45); }
+    .sponsor-card img { max-width: 100%; height: 64px; object-fit: contain; }
+    .sponsor-card span { font-weight: 700; font-size: 0.88rem; }
+
+    /* Preguntas frecuentes */
+    .faq-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 860px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .faq-item:hover, .faq-item.open { border-color: rgba(16, 185, 129, 0.4); }
+    .faq-q {
+      width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      text-align: left; background: none; border: 0; color: var(--text-main);
+      font-size: 1rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer;
+    }
+    .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .faq-q svg { flex: none; color: var(--accent); transition: transform 0.3s ease; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+    .faq-a > div { overflow: hidden; }
+    .faq-a p {
+      padding: 0 1.3rem 1.2rem; color: var(--text-muted); font-size: 0.94rem;
+      visibility: hidden; transition: visibility 0s linear 0.35s;
+    }
+    .faq-item.open .faq-a p { visibility: visible; transition-delay: 0s; }
+
+    @media (max-width: 600px) {
+      .players-stage { --k: 0.62; }
+      .pc-0 { left: -5%; }
+      .pc-1 { left: 11%; }
+      .pc-3 { right: 11%; }
+      .pc-4 { right: -5%; }
+      .kits-bar { flex-wrap: wrap; }
+      .kit-pill { flex: 1 1 28%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; }
+      .js .reveal.in { animation: none; }
+      .player-card img { animation: none; }
+    }
+
     @media (max-width: 900px) {
       .hero, .media-grid { grid-template-columns: 1fr; }
       .hero { text-align: center; padding-top: 2.5rem; }
@@ -299,6 +437,10 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="4"></rect><polygon points="10 9 15 12 10 15 10 9"></polygon></svg>
             <span data-i18n="btnYoutube">Canal de YouTube</span>
           </a>
+          <a id="btn-discord" href="https://discord.gg/h2FJ4quKJ2" target="_blank" rel="noopener" class="btn-discord">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+            <span data-i18n="btnDiscord">Comunidad Discord</span>
+          </a>
         </div>
 
         <div class="meta-specs">
@@ -315,21 +457,25 @@
 
       <div id="hero-visual-box" class="hero-visual">
         <div class="players-stage">
-          <div class="player-card left"><img id="p-img-0" src="jugador1.png" alt="Jugador 1"></div>
-          <div class="player-card center"><img id="p-img-1" src="jugador2.png" alt="Jugador 2"></div>
-          <div class="player-card right"><img id="p-img-2" src="jugador3.png" alt="Jugador 3"></div>
+          <div id="p-card-0" class="player-card pc-0"><img id="p-img-0" src="jugador1.png" alt="Extremo izquierdo"></div>
+          <div id="p-card-1" class="player-card pc-1 is-empty"><img id="p-img-1" alt="Interior izquierdo"></div>
+          <div id="p-card-2" class="player-card pc-2"><img id="p-img-2" src="jugador2.png" alt="Protagonista central"></div>
+          <div id="p-card-3" class="player-card pc-3 is-empty"><img id="p-img-3" alt="Interior derecho"></div>
+          <div id="p-card-4" class="player-card pc-4"><img id="p-img-4" src="jugador3.png" alt="Extremo derecho"></div>
         </div>
         <div class="kits-bar">
           <div id="p-club-0" class="kit-pill">Uniforme Genérico</div>
-          <div id="p-club-1" class="kit-pill">Uniforme Genérico</div>
+          <div id="p-club-1" class="kit-pill is-empty">Uniforme Genérico</div>
           <div id="p-club-2" class="kit-pill">Uniforme Genérico</div>
+          <div id="p-club-3" class="kit-pill is-empty">Uniforme Genérico</div>
+          <div id="p-club-4" class="kit-pill">Uniforme Genérico</div>
         </div>
       </div>
     </section>
 
     <!-- Vitrina Licenciados -->
     <section class="section" style="padding-top: 1rem; padding-bottom: 1rem;">
-      <div class="licensed-banner">
+      <div class="licensed-banner reveal">
         <div class="section-header" style="margin-bottom: 0;">
           <div>
             <h3 style="font-size: 1.2rem; font-weight: 800;" data-i18n="licBannerTitle">Clubes Oficiales Licenciados</h3>
@@ -349,7 +495,7 @@
 
     <!-- Características -->
     <section id="caracteristicas" class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div>
           <h2 class="section-title" data-i18n="featTitle">Diseñado para competir en igualdad</h2>
           <p class="section-sub" data-i18n="featSub">Una experiencia de fútbol móvil enfocada en la habilidad dentro de la cancha.</p>
@@ -357,28 +503,28 @@
       </div>
       
       <div class="features-grid">
-        <div class="feature-card">
+        <div class="feature-card reveal">
           <div class="icon-box">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
           </div>
           <h3 data-i18n="f1Title">Cero Pay-to-Win</h3>
           <p data-i18n="f1Desc">Ninguna compra otorga ventajas estadísticas en el partido. El resultado depende únicamente de tu táctica y control.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card reveal">
           <div class="icon-box">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
           </div>
           <h3 data-i18n="f2Title">Modo Carrera</h3>
           <p data-i18n="f2Desc">Toma el mando de tu club, gestiona fichajes ficticios, desarrolla canteranos y asciende hasta la máxima categoría.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card reveal">
           <div class="icon-box">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
           <h3 data-i18n="f3Title">Multijugador Online</h3>
           <p data-i18n="f3Desc">Enfréntate en tiempo real contra otros jugadores en divisiones competitivas y torneos de fin de semana.</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card reveal">
           <div class="icon-box">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
           </div>
@@ -390,14 +536,14 @@
 
     <!-- Avances Multimedia -->
     <section id="avances" class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div>
           <h2 class="section-title" data-i18n="mediaTitle">Avances y Capturas In-Game</h2>
           <p class="section-sub" data-i18n="mediaSub">Sigue el desarrollo técnico de ELEVEN directamente desde nuestro canal oficial.</p>
         </div>
       </div>
       <div class="media-grid">
-        <div class="video-frame">
+        <div class="video-frame reveal">
           <iframe id="yt-embed" src="https://www.youtube.com/embed?listType=user_uploads&list=mthigamesCR" allowfullscreen></iframe>
         </div>
         <div id="screenshots-container" class="screenshots-grid"></div>
@@ -406,7 +552,7 @@
 
     <!-- Directorio de Clubes -->
     <section id="clubes" class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div>
           <h2 class="section-title" data-i18n="clubsTitle">Directorio de Clubes</h2>
           <p class="section-sub" data-i18n="clubsSub">Todos los futbolistas dentro del juego son ficticios. Los escudos oficiales se activan al confirmarse cada licencia.</p>
@@ -416,9 +562,41 @@
       <div id="clubs-container" class="clubs-grid"></div>
     </section>
 
+    <!-- Convocatorias Oficiales de la Comunidad -->
+    <section id="convocatorias" class="section" style="padding-top: 1rem; padding-bottom: 1rem;">
+      <div class="convocatoria reveal">
+        <div class="conv-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18.5 5.5a9 9 0 0 1 0 13"></path></svg>
+        </div>
+        <div class="conv-body">
+          <h3 data-i18n="convTitle">Convocatorias oficiales de la comunidad</h3>
+          <p data-i18n="convDesc">Los jugadores de la comunidad se eligen mediante convocatorias oficiales que anunciamos en nuestro canal de YouTube y en el servidor de Discord. Así mantenemos el equilibrio del juego y todas las incorporaciones pasan por el mismo proceso.</p>
+        </div>
+        <div class="conv-actions">
+          <a data-yt-link href="https://www.youtube.com/@mthigamesCR" target="_blank" rel="noopener" class="btn-secondary">
+            <span data-i18n="convYoutube">Ver convocatorias en YouTube</span>
+          </a>
+          <a href="https://discord.gg/h2FJ4quKJ2" target="_blank" rel="noopener" class="btn-discord">
+            <span data-i18n="convDiscord">Unirme al Discord</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patrocinadores y Colaboradores -->
+    <section id="patrocinadores" class="section">
+      <div class="section-header reveal">
+        <div>
+          <h2 class="section-title" data-i18n="sponsTitle">Patrocinadores y Colaboradores</h2>
+          <p class="section-sub" data-i18n="sponsSub">Marcas, canales y servidores que apoyan el desarrollo de ELEVEN.</p>
+        </div>
+      </div>
+      <div id="sponsors-container" class="sponsors-grid"></div>
+    </section>
+
     <!-- Changelog -->
     <section class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div>
           <h2 class="section-title" data-i18n="logTitle">Historial de Actualizaciones</h2>
           <p class="section-sub" data-i18n="logSub">Registro público de versiones y mejoras añadidas en cada lanzamiento.</p>
@@ -429,13 +607,13 @@
 
     <!-- Guía de instalación -->
     <section id="instalar" class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div>
           <h2 class="section-title" data-i18n="instTitle">Guía rápida de instalación</h2>
           <p class="section-sub" data-i18n="instSub">Al ser una distribución independiente directa, sigue estos tres pasos en tu dispositivo Android:</p>
         </div>
       </div>
-      <div class="install-box">
+      <div class="install-box reveal">
         <div>
           <div class="step-num" data-i18n="s1Num">Paso 01</div>
           <h4 data-i18n="s1Title">Descarga el archivo APK</h4>
@@ -454,15 +632,69 @@
       </div>
     </section>
 
+    <!-- Preguntas Frecuentes -->
+    <section id="faq" class="section">
+      <div class="section-header reveal">
+        <div>
+          <h2 class="section-title" data-i18n="faqTitle">Preguntas frecuentes</h2>
+          <p class="section-sub" data-i18n="faqSub">Resolvemos las dudas más comunes sobre ELEVEN.</p>
+        </div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+            <span data-i18n="faq1Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p data-i18n="faq1A"></p></div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+            <span data-i18n="faq2Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p data-i18n="faq2A"></p></div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+            <span data-i18n="faq3Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p data-i18n="faq3A"></p></div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+            <span data-i18n="faq4Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p data-i18n="faq4A"></p></div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+            <span data-i18n="faq5Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p data-i18n="faq5A"></p></div></div>
+        </div>
+        <div class="faq-item reveal">
+          <button type="button" class="faq-q" id="faq-q6" aria-expanded="false" aria-controls="faq-a6">
+            <span data-i18n="faq6Q"></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p data-i18n="faq6A"></p></div></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Contacto Directo -->
     <section class="section">
       <div class="contact-grid">
-        <div class="contact-card">
+        <div class="contact-card reveal">
           <h3 data-i18n="cClubTitle">¿Representas a un club de fútbol?</h3>
           <p data-i18n="cClubDesc">Si deseas que tu club aparezca oficialmente con su nombre, escudo y colores en ELEVEN (sin costo y con jugadores ficticios), contáctanos para recibir el acuerdo no exclusivo.</p>
           <a href="mailto:mathi280713@gmail.com?subject=Propuesta%20de%20Licencia%20ELEVEN" class="btn-secondary" style="font-size: 0.9rem; padding: 10px 18px;">mathi280713@gmail.com</a>
         </div>
-        <div class="contact-card">
+        <div class="contact-card reveal">
           <h3 data-i18n="cSupTitle">Soporte y Comunidad</h3>
           <p data-i18n="cSupDesc">¿Tienes sugerencias para el juego, encontraste algún error en la versión Alpha o quieres enviar comentarios rápidos?</p>
           <a href="mailto:pmathias2807@gmail.com?subject=Consulta%20ELEVEN" class="btn-secondary" style="font-size: 0.9rem; padding: 10px 18px;">pmathias2807@gmail.com</a>
@@ -506,7 +738,28 @@
         cSupTitle: 'Soporte y Comunidad', cSupDesc: '¿Tienes sugerencias para el juego, encontraste algún error en la versión Alpha o quieres enviar comentarios rápidos?',
         filterAll: 'Todos', filterLic: 'Licenciados',
         statusLic: 'Club Oficial Licenciado', statusPend: 'Pendiente de licencia',
-        noLicYet: 'Próximamente se anunciarán los primeros clubes oficiales confirmados.'
+        noLicYet: 'Próximamente se anunciarán los primeros clubes oficiales confirmados.',
+        btnDiscord: 'Comunidad Discord',
+        filterCreators: '★ Clubes Creadores', creatorBadge: '★ Club Creador',
+        noCreatorsYet: 'Pronto se sumarán los primeros clubes de creadores.',
+        convTitle: 'Convocatorias oficiales de la comunidad',
+        convDesc: 'Los jugadores de la comunidad se eligen mediante convocatorias oficiales que anunciamos en nuestro canal de YouTube y en el servidor de Discord. Así mantenemos el equilibrio del juego y todas las incorporaciones pasan por el mismo proceso.',
+        convYoutube: 'Ver convocatorias en YouTube', convDiscord: 'Unirme al Discord',
+        sponsTitle: 'Patrocinadores y Colaboradores', sponsSub: 'Marcas, canales y servidores que apoyan el desarrollo de ELEVEN.',
+        sponsEmpty: 'Pronto verás aquí a las marcas, canales y servidores aliados de ELEVEN.',
+        faqTitle: 'Preguntas frecuentes', faqSub: 'Resolvemos las dudas más comunes sobre ELEVEN.',
+        faq1Q: '¿Cómo instalo el APK de ELEVEN?',
+        faq1A: 'Pulsa el botón de descarga oficial, abre el archivo desde tu navegador o gestor de archivos y, si Android lo solicita, permite instalar aplicaciones desconocidas para esa app. Al terminar, abre ELEVEN desde tu menú de aplicaciones. Arriba tienes la guía paso a paso.',
+        faq2Q: '¿Es seguro instalar un APK fuera de Google Play?',
+        faq2A: 'ELEVEN se distribuye de forma independiente, por eso se instala como APK. Descárgalo siempre desde el botón oficial de esta página y evita enlaces de terceros. Después de instalarlo, puedes volver a desactivar el permiso de fuentes desconocidas en los ajustes de Android.',
+        faq3Q: '¿ELEVEN es gratis? ¿Hay Pay-to-Win?',
+        faq3A: 'Sí, puedes descargarlo y jugar gratis. El modelo es Zero Pay-to-Win: ninguna compra da ventajas estadísticas en la cancha, y los resultados dependen únicamente de tu táctica y tu habilidad.',
+        faq4Q: '¿Qué significa que un club esté licenciado?',
+        faq4A: 'Todos los futbolistas del juego son ficticios. El escudo y los colores oficiales de un club aparecen solo cuando ese club firma un acuerdo de licencia no exclusivo y sin costo con ELEVEN; mientras tanto, figura como pendiente de licencia.',
+        faq5Q: '¿Qué es un Club Creador?',
+        faq5A: 'Son equipos de creadores de contenido y comunidades, como LioTiz FC, que forman parte de ELEVEN sin ser clubes federados. Se identifican en el directorio con la placa dorada ★ Club Creador.',
+        faq6Q: '¿Cómo puedo ser parte de los jugadores de la comunidad?',
+        faq6A: 'Los jugadores de la comunidad se eligen mediante convocatorias oficiales que anunciamos en YouTube y Discord. Únete al servidor y activa las notificaciones para no perderte la próxima.'
       },
       en: {
         navFeatures: 'Features', navMedia: 'Media', navClubs: 'Clubs', navInstall: 'Install',
@@ -532,7 +785,28 @@
         cSupTitle: 'Support & Community', cSupDesc: 'Have feedback for the game, found a bug in the Alpha build, or want to send a quick message?',
         filterAll: 'All', filterLic: 'Licensed',
         statusLic: 'Official Licensed Club', statusPend: 'Pending License',
-        noLicYet: 'First confirmed official partner clubs will be announced soon.'
+        noLicYet: 'First confirmed official partner clubs will be announced soon.',
+        btnDiscord: 'Discord Community',
+        filterCreators: '★ Creator Clubs', creatorBadge: '★ Creator Club',
+        noCreatorsYet: 'The first creator clubs will join soon.',
+        convTitle: 'Official community call-ups',
+        convDesc: 'Community players are chosen through official call-ups announced on our YouTube channel and Discord server. This keeps the game balanced and every addition goes through the same process.',
+        convYoutube: 'Watch call-ups on YouTube', convDiscord: 'Join the Discord',
+        sponsTitle: 'Sponsors & Partners', sponsSub: 'Brands, channels and servers that support ELEVEN development.',
+        sponsEmpty: 'Soon you will see ELEVEN partner brands, channels and servers here.',
+        faqTitle: 'Frequently Asked Questions', faqSub: 'Answers to the most common questions about ELEVEN.',
+        faq1Q: 'How do I install the ELEVEN APK?',
+        faq1A: 'Tap the official download button, open the file from your browser or file manager and, if Android asks, allow installing unknown apps for that app. When it finishes, open ELEVEN from your app menu. The step-by-step guide is above.',
+        faq2Q: 'Is it safe to install an APK outside Google Play?',
+        faq2A: 'ELEVEN is distributed independently, which is why it installs as an APK. Always download it from the official button on this page and avoid third-party links. After installing, you can turn the unknown sources permission off again in Android settings.',
+        faq3Q: 'Is ELEVEN free? Is it Pay-to-Win?',
+        faq3A: 'Yes, you can download and play for free. The model is Zero Pay-to-Win: no purchase gives statistical advantages on the pitch, and results depend only on your tactics and skill.',
+        faq4Q: 'What does it mean for a club to be licensed?',
+        faq4A: 'All players in the game are fictional. A club official crest and colours appear only when that club signs a free, non-exclusive licence agreement with ELEVEN; until then it is listed as pending.',
+        faq5Q: 'What is a Creator Club?',
+        faq5A: 'Creator Clubs are teams run by content creators and communities, like LioTiz FC, that are part of ELEVEN without being federated clubs. They carry the golden ★ Creator Club badge in the directory.',
+        faq6Q: 'How can I become one of the community players?',
+        faq6A: 'Community players are chosen through official call-ups announced on YouTube and Discord. Join the server and turn on notifications so you do not miss the next one.'
       }
     };
 
@@ -546,6 +820,49 @@
       if (globalData) renderDynamicSections();
     }
 
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function safeUrl(u) {
+      u = String(u || '').trim();
+      if (/^https?:\/\//i.test(u)) return u;
+      if (/^[\w-]+(\.[\w-]+)+/.test(u)) return 'https://' + u;
+      return '';
+    }
+
+    function youtubeEmbedFromUrl(u) {
+      const m = String(u || '').match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+      return m ? 'https://www.youtube.com/embed/' + m[1] : '';
+    }
+
+    function setPlayerSlot(i, p) {
+      const card = document.getElementById(`p-card-${i}`);
+      const img = document.getElementById(`p-img-${i}`);
+      const pill = document.getElementById(`p-club-${i}`);
+      if (!card || !img || !pill) return;
+      const hide = () => { card.classList.add('is-empty'); pill.classList.add('is-empty'); };
+      if (!p || !p.imagen) { hide(); return; }
+      img.onerror = hide;
+      img.src = p.imagen + '?t=' + Date.now();
+      pill.textContent = p.club || 'Uniforme Genérico';
+      card.classList.remove('is-empty');
+      pill.classList.remove('is-empty');
+    }
+
+    // Aparición suave al hacer scroll
+    const revealObserver = ('IntersectionObserver' in window)
+      ? new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); revealObserver.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' })
+      : null;
+
+    function observeReveals() {
+      document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+        if (revealObserver) revealObserver.observe(el); else el.classList.add('in');
+      });
+    }
+
     async function cargarDatos() {
       try {
         const res = await fetch('datos.json?t=' + Date.now());
@@ -555,8 +872,12 @@
         document.getElementById('game-version').textContent = j.version;
         document.getElementById('game-size').textContent = j.tamano;
         document.getElementById('game-android').textContent = j.androidMinimo;
-        document.getElementById('btn-download').href = j.apkUrl;
-        document.getElementById('btn-youtube').href = j.youtubeUrl;
+        if (j.apkUrl) document.getElementById('btn-download').href = j.apkUrl;
+        if (j.youtubeUrl) {
+          document.getElementById('btn-youtube').href = j.youtubeUrl;
+          document.querySelectorAll('[data-yt-link]').forEach(a => { a.href = j.youtubeUrl; });
+        }
+        if (j.subtitulo) document.getElementById('game-subtitle').textContent = j.subtitulo;
 
         // Aplicar Logo Oficial si existe en datos.json o si se subió logo-juego.png
         const logoSrc = j.logoUrl ? j.logoUrl : 'escudo-generico.svg';
@@ -576,19 +897,20 @@
         const estadio = j.estadioBg || 'estadio-bg.png';
         document.getElementById('hero-visual-box').style.backgroundImage = `url('${estadio}?t=${Date.now()}')`;
 
-        // Video Embed
-        if (j.trailerEmbed) {
-          document.getElementById('yt-embed').src = j.trailerEmbed;
-        }
+        // Video Embed (acepta el embed directo o el enlace normal de YouTube)
+        const embed = j.trailerEmbed || youtubeEmbedFromUrl(j.youtubeVideo);
+        if (embed) document.getElementById('yt-embed').src = embed;
 
-        // Jugadores destacados
-        if (globalData.destacados) {
-          globalData.destacados.forEach((p, idx) => {
-            const imgEl = document.getElementById(`p-img-${idx}`);
-            const clubEl = document.getElementById(`p-club-${idx}`);
-            if (imgEl && p.imagen) imgEl.src = p.imagen + '?t=' + Date.now();
-            if (clubEl && p.club) clubEl.textContent = p.club;
-          });
+        // Jugadores destacados (5 espacios: formación en "V" invertida)
+        if (globalData.destacados && globalData.destacados.length) {
+          let dest = globalData.destacados;
+          if (dest.length < 5) {
+            // Datos antiguos de 3 jugadores: van a los espacios izquierda / centro / derecha
+            const mapped = [null, null, null, null, null];
+            [0, 2, 4].forEach((slot, k) => { if (dest[k]) mapped[slot] = dest[k]; });
+            dest = mapped;
+          }
+          for (let i = 0; i < 5; i++) setPlayerSlot(i, dest[i]);
         }
 
         renderDynamicSections();
@@ -598,82 +920,121 @@
     }
 
     function renderDynamicSections() {
-      // 1. Barra de licenciados
-      const licClubes = globalData.clubes.filter(c => c.licenciado);
-      document.getElementById('lic-counter').textContent = `${licClubes.length} / ${globalData.clubes.length}`;
-      const pct = globalData.clubes.length ? (licClubes.length / globalData.clubes.length) * 100 : 0;
+      const t = i18n[currentLang];
+      const clubes = globalData.clubes || [];
+      const stagger = i => `style="--d:${Math.min(i, 10) * 55}ms"`;
+
+      // 1. Barra de licenciados (los Clubes Creadores no necesitan licencia)
+      const federados = clubes.filter(c => c.tipo !== 'creador');
+      const licClubes = federados.filter(c => c.licenciado);
+      document.getElementById('lic-counter').textContent = `${licClubes.length} / ${federados.length}`;
+      const pct = federados.length ? (licClubes.length / federados.length) * 100 : 0;
       document.getElementById('lic-fill').style.width = pct + '%';
 
       const licRow = document.getElementById('licensed-logos-row');
-      licRow.innerHTML = '';
       if (licClubes.length === 0) {
-        licRow.innerHTML = `<span style="color: var(--text-muted); font-size: 0.9rem;">${i18n[currentLang].noLicYet}</span>`;
+        licRow.innerHTML = `<span style="color: var(--text-muted); font-size: 0.9rem;">${t.noLicYet}</span>`;
       } else {
-        licClubes.forEach(c => {
-          licRow.innerHTML += `
-            <div class="lic-badge-item">
-              <img src="${c.escudo}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
-              <span>${c.nombre}</span>
-            </div>`;
-        });
+        licRow.innerHTML = licClubes.map((c, i) => `
+          <div class="lic-badge-item reveal" ${stagger(i)}>
+            <img src="${esc(c.escudo)}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
+            <span>${esc(c.nombre)}</span>
+          </div>`).join('');
       }
 
       // 2. Capturas
-      const shotsCont = document.getElementById('screenshots-container');
-      shotsCont.innerHTML = '';
-      (globalData.capturas || []).forEach(cap => {
-        shotsCont.innerHTML += `
-          <div class="shot-card">
-            <img src="${cap.imagen}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
-            <div>${cap.titulo}</div>
-          </div>`;
-      });
+      document.getElementById('screenshots-container').innerHTML = (globalData.capturas || []).map((cap, i) => `
+        <div class="shot-card reveal" ${stagger(i)}>
+          <img src="${esc(cap.imagen)}?t=${Date.now()}" onerror="this.src='escudo-generico.svg'">
+          <div>${esc(cap.titulo)}</div>
+        </div>`).join('');
 
       // 3. Filtros y Directorio de Clubes
-      const countries = ['ALL', 'LIC', ...new Set(globalData.clubes.map(c => c.pais))];
+      const countries = ['ALL', 'LIC', 'CREATOR', ...new Set(clubes.map(c => c.pais))];
       const filterBar = document.getElementById('filter-bar');
       filterBar.innerHTML = '';
       countries.forEach(f => {
-        const label = f === 'ALL' ? i18n[currentLang].filterAll : (f === 'LIC' ? i18n[currentLang].filterLic : f);
+        const label = f === 'ALL' ? t.filterAll : (f === 'LIC' ? t.filterLic : (f === 'CREATOR' ? t.filterCreators : f));
         const btn = document.createElement('button');
-        btn.className = 'filter-btn' + (activeFilter === f ? ' active' : '');
+        btn.className = 'filter-btn' + (f === 'CREATOR' ? ' gold' : '') + (activeFilter === f ? ' active' : '');
         btn.textContent = label;
         btn.onclick = () => { activeFilter = f; renderDynamicSections(); };
         filterBar.appendChild(btn);
       });
 
       const clubsCont = document.getElementById('clubs-container');
-      clubsCont.innerHTML = '';
-      const filtered = globalData.clubes.filter(c => {
+      const filtered = clubes.filter(c => {
         if (activeFilter === 'ALL') return true;
         if (activeFilter === 'LIC') return c.licenciado;
+        if (activeFilter === 'CREATOR') return c.tipo === 'creador';
         return c.pais === activeFilter;
       });
 
-      filtered.forEach(club => {
-        const pillClass = club.licenciado ? 'status-official' : 'status-pending';
-        const statusText = club.licenciado ? i18n[currentLang].statusLic : i18n[currentLang].statusPend;
-        clubsCont.innerHTML += `
-          <div class="club-card">
-            <img src="${club.escudo}?t=${Date.now()}" alt="${club.nombre}" onerror="this.src='escudo-generico.svg'">
-            <h4>${club.nombre}</h4>
-            <div class="club-country">${club.pais}</div>
-            <span class="status-pill ${pillClass}">${statusText}</span>
+      if (filtered.length === 0 && activeFilter === 'CREATOR') {
+        clubsCont.innerHTML = `<p class="empty-note">${t.noCreatorsYet}</p>`;
+      } else {
+        clubsCont.innerHTML = filtered.map((club, i) => {
+          const isCreator = club.tipo === 'creador';
+          const tag = isCreator
+            ? `<span class="creator-badge">${t.creatorBadge}</span>`
+            : `<span class="status-pill ${club.licenciado ? 'status-official' : 'status-pending'}">${club.licenciado ? t.statusLic : t.statusPend}</span>`;
+          return `
+          <div class="club-card reveal${isCreator ? ' creator' : ''}" ${stagger(i)}>
+            <img src="${esc(club.escudo)}?t=${Date.now()}" alt="${esc(club.nombre)}" onerror="this.src='escudo-generico.svg'">
+            <h4>${esc(club.nombre)}</h4>
+            <div class="club-country">${esc(club.pais)}</div>
+            ${tag}
           </div>`;
-      });
+        }).join('');
+      }
 
-      // 4. Changelog
-      const logCont = document.getElementById('changelog-container');
-      logCont.innerHTML = '';
-      (globalData.changelog || []).forEach(item => {
-        const lis = (item.cambios || []).map(txt => `<li>${txt}</li>`).join('');
-        logCont.innerHTML += `
-          <div class="log-item">
-            <div class="log-head"><span>${item.version}</span><span style="color: var(--text-muted); font-size: 0.85rem;">${item.fecha}</span></div>
+      // 4. Patrocinadores y colaboradores
+      const sponsors = globalData.patrocinadores || [];
+      const spCont = document.getElementById('sponsors-container');
+      if (sponsors.length === 0) {
+        spCont.innerHTML = `<p class="empty-note">${t.sponsEmpty}</p>`;
+      } else {
+        spCont.innerHTML = sponsors.map((s, i) => {
+          const url = safeUrl(s.url);
+          const inner = `
+            <img src="${esc(s.logo)}?t=${Date.now()}" alt="${esc(s.nombre)}" onerror="this.src='escudo-generico.svg'">
+            <span>${esc(s.nombre)}</span>`;
+          return url
+            ? `<a class="sponsor-card reveal" ${stagger(i)} href="${esc(url)}" target="_blank" rel="noopener noreferrer">${inner}</a>`
+            : `<div class="sponsor-card reveal" ${stagger(i)}>${inner}</div>`;
+        }).join('');
+      }
+
+      // 5. Changelog
+      document.getElementById('changelog-container').innerHTML = (globalData.changelog || []).map((item, i) => {
+        const lis = (item.cambios || []).map(txt => `<li>${esc(txt)}</li>`).join('');
+        return `
+          <div class="log-item reveal" ${stagger(i)}>
+            <div class="log-head"><span>${esc(item.version)}</span><span style="color: var(--text-muted); font-size: 0.85rem;">${esc(item.fecha)}</span></div>
             <ul>${lis}</ul>
           </div>`;
-      });
+      }).join('');
+
+      observeReveals();
     }
+
+    // Preguntas frecuentes (acordeón)
+    document.addEventListener('click', (e) => {
+      const q = e.target.closest('.faq-q');
+      if (!q) return;
+      const open = q.closest('.faq-item').classList.toggle('open');
+      q.setAttribute('aria-expanded', String(open));
+    });
+
+    // Textos iniciales (FAQ y secciones nuevas) y escalonado de tarjetas estáticas
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (!el.textContent.trim() && i18n[currentLang][key]) el.textContent = i18n[currentLang][key];
+    });
+    ['.features-grid', '.contact-grid', '.faq-list'].forEach(sel => {
+      document.querySelectorAll(sel + ' > .reveal').forEach((el, i) => el.style.setProperty('--d', (i * 80) + 'ms'));
+    });
+    observeReveals();
 
     cargarDatos();
   </script>
