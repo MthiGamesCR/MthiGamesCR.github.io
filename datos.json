@@ -15,17 +15,27 @@
   },
   "destacados": [
     {
-      "posicion": "Izquierda",
+      "posicion": "Extremo Izquierdo",
       "imagen": "jugador1.png",
       "club": "Uniforme Genérico"
     },
     {
-      "posicion": "Centro",
+      "posicion": "Interior Izquierdo",
+      "imagen": "",
+      "club": "Uniforme Genérico"
+    },
+    {
+      "posicion": "Protagonista Central",
       "imagen": "jugador2.png",
       "club": "LioTiz FC"
     },
     {
-      "posicion": "Derecha",
+      "posicion": "Interior Derecho",
+      "imagen": "",
+      "club": "Uniforme Genérico"
+    },
+    {
+      "posicion": "Extremo Derecho",
       "imagen": "jugador3.png",
       "club": "Uniforme Genérico"
     }
@@ -51,10 +61,11 @@
     {
       "id": "club_1794700123693",
       "nombre": "LioTiz FC",
-      "pais": "España",
+      "pais": "México",
       "estado": "Club Oficial Licenciado",
       "licenciado": true,
-      "escudo": "escudos/liotizfc.png"
+      "escudo": "escudos/liotizfc.png",
+      "tipo": "creador"
     },
     {
       "id": "herediano",
@@ -62,7 +73,8 @@
       "pais": "Costa Rica",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "carmelita",
@@ -70,7 +82,8 @@
       "pais": "Costa Rica",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "aserri",
@@ -78,7 +91,8 @@
       "pais": "Costa Rica",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "unionistas",
@@ -86,7 +100,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "murcia",
@@ -94,7 +109,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "xerez",
@@ -102,7 +118,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "ourense",
@@ -110,7 +127,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "ceares",
@@ -118,7 +136,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "logrones",
@@ -126,7 +145,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "socios",
@@ -134,7 +154,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "aviles",
@@ -142,7 +163,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "almeria",
@@ -150,7 +172,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "tarraco",
@@ -158,7 +181,8 @@
       "pais": "España",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "fcunited",
@@ -166,7 +190,8 @@
       "pais": "Inglaterra",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "chester",
@@ -174,7 +199,8 @@
       "pais": "Inglaterra",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "bury",
@@ -182,7 +208,8 @@
       "pais": "Inglaterra",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "enfield",
@@ -190,7 +217,8 @@
       "pais": "Inglaterra",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "clapton",
@@ -198,7 +226,8 @@
       "pais": "Inglaterra",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "bohemian",
@@ -206,7 +235,8 @@
       "pais": "Irlanda",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "trebic",
@@ -214,7 +244,8 @@
       "pais": "República Checa",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     },
     {
       "id": "claypole",
@@ -222,7 +253,9 @@
       "pais": "Argentina",
       "estado": "Pendiente de licencia",
       "licenciado": false,
-      "escudo": "escudo-generico.svg"
+      "escudo": "escudo-generico.svg",
+      "tipo": "federado"
     }
-  ]
+  ],
+  "patrocinadores": []
 }
