@@ -48,12 +48,19 @@
   ],
   "changelog": [
     {
-      "version": "v0.1.0 Alpha",
+      "version": "v0.1.0",
       "fecha": "Noviembre 2026",
       "cambios": [
         "Lanzamiento de la plataforma web oficial de descargas.",
         "Inicio de gestión de licencias oficiales con clubes independientes.",
         "Motor base de partidos y plantillas 100% ficticias."
+      ]
+    },
+    {
+      "version": "v0.2.0 Alpha",
+      "fecha": "Noviembre 2026",
+      "cambios": [
+        "Primeras versiones de los gráficos y jugabilidad, además de los primeros clubs licenciados."
       ]
     }
   ],
