@@ -31,7 +31,7 @@
     },
     {
       "posicion": "Interior Derecho",
-      "imagen": "",
+      "imagen": "portada-jugador-4.png",
       "club": "Uniforme Genérico"
     },
     {
@@ -69,11 +69,11 @@
     },
     {
       "id": "herediano",
-      "nombre": "Club Sport Herediano",
+      "nombre": "Club Sport Huracán",
       "pais": "Costa Rica",
-      "estado": "Pendiente de licencia",
-      "licenciado": false,
-      "escudo": "escudo-generico.svg",
+      "estado": "Club Oficial Licenciado",
+      "licenciado": true,
+      "escudo": "escudos/clubsporthuracn.png",
       "tipo": "federado"
     },
     {
